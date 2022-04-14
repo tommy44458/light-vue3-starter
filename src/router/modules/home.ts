@@ -1,8 +1,8 @@
 export default {
-    name: 'home',
+    name: 'page-home',
     meta: {
         icon: 'iconfont-xxx',
     },
     path: '/home',
-    component: () => import('@/App.vue'),
+    component: () => import('@/views/Home.vue'),
 }
