@@ -1,20 +1,21 @@
-stages:
-  - install_deps
-  - test
-  - build
-  - package
-  - dev
+# stages:
+#   - install_deps
+#   - test
+#   - build
+#   - package
+#   - dev
 
-default:
-  image: node:lts
-  before_script:
-    - yarn install
+# default:
+#   image: node:lts
+#   pages:
+#   before_script:
+#     - yarn install
 
-Install Dependencies:
-  stage: install_deps
-  script:
-    - yarn install
-  when: manual
+# Install Dependencies:
+#   stage: install_deps
+#   script:
+#     - yarn install
+#   when: manual
 
 # Test:
 #   stage: test
@@ -26,13 +27,13 @@ Install Dependencies:
 #   script:
 #     - yarn dev
 
-Build:
-  stage: build
-  script:
-    - yarn build
-  artifacts:
-    paths:
-      - public
+# Build:
+#   stage: build
+#   script:
+#     - yarn build
+#   artifacts:
+#     paths:
+#       - public
 
 # Docker Build:
 #   before_script:
@@ -47,3 +48,16 @@ Build:
 #   script:
 #     - docker build -t ${CI_REGISTRY_IMAGE}/gprg:latest .
 #     - docker push ${CI_REGISTRY_IMAGE}/gprg:latest
+
+image: node:lts
+pages:
+  stage: deploy
+  script:
+    - yarn install
+    - yarn build
+    - mv dist/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+  - main
