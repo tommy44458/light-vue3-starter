@@ -2,25 +2,26 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import importToCDN from 'vite-plugin-cdn-import'// import by CDN (only import needed)
-import * as fs from 'fs'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const TRUE = 'true'
 
 export default ({ mode, command }: { mode: string, command: string }) => {
     const ENV = loadEnv(mode, process.cwd()) // load (dev || prod) .env
-    // load global scss
-    const scssResources: string[] = []
-    fs.readdirSync('src/assets/scss').map(file => {
-        if (fs.statSync(`src/assets/scss/${file}`).isFile()) {
-            scssResources.push(`@import 'src/assets/scss/${file}';`)
-        }
-        return 1
-    })
     // vite config
     return defineConfig({
         base: './',
         plugins: [
             vue(),
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+            }),
+            Components({
+                resolvers: [ElementPlusResolver({})],
+            }),
             importToCDN({
                 modules: [
                     {
@@ -30,6 +31,12 @@ export default ({ mode, command }: { mode: string, command: string }) => {
                         var: 'ElementPlus',
                     },
                 ],
+            }),
+            createSvgIconsPlugin({
+                // Specify the icon folder to be cached
+                iconDirs: [resolve(process.cwd(), 'src/assets/icon')],
+                // Specify symbolId format
+                symbolId: 'icon-[dir]-[name]',
             }),
         ],
         resolve: {
@@ -43,7 +50,7 @@ export default ({ mode, command }: { mode: string, command: string }) => {
                 '/proxy': {
                     target: ENV.VITE_BASE_URL,
                     changeOrigin: command === 'serve' && ENV.VITE_OPEN_PROXY === TRUE, // is cross proxy,
-                    rewrite: (path) => path.replace(/\/proxy/, ''),
+                    rewrite: path => path.replace(/\/proxy/, ''),
                 },
             },
         },
@@ -62,7 +69,7 @@ export default ({ mode, command }: { mode: string, command: string }) => {
             // preload scss
             preprocessorOptions: {
                 scss: {
-                    additionalData: scssResources.join(''),
+                    additionalData: '@use "src/assets/scss/element/index.scss" as *;',
                 },
             },
         },

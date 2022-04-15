@@ -34,6 +34,7 @@
     "isolatedModules": true,
     "incremental": true,
     "baseUrl": ".",
+    "types": ["element-plus/global"],
     "paths": {
       "@/*": [
         "./src/*"

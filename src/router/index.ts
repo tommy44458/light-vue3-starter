@@ -4,7 +4,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routeFiles = import.meta.globEager('@/router/modules/*')
 const routeConfiguras: RouteRecordRaw[] = []
 
-
 Object.keys(routeFiles).forEach(routeModule => {
     routeFiles[routeModule]?.default && routeConfiguras.push(routeFiles[routeModule]?.default)
 })
@@ -14,6 +13,11 @@ const defaultRouteConfiguras = [
     {
         path: '/',
         redirect: '/home',
+    },
+    {
+        name: 'layout-test',
+        path: '/layout-test',
+        component: () => import('@/views/LayoutTest.vue'),
     },
 ]
 

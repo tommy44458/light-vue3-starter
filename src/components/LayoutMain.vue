@@ -1,20 +1,18 @@
 <template>
 	<main class="main-container">
-		<div class="top">
-			<LayoutHeader />
-		</div>
-
-		<div class="bottom">
-			<div class="left">
-				<LayoutMenu />
-			</div>
-
-			<div class="right">
-				<div class="content">
+		<el-container>
+			<el-header>
+				<LayoutHeader></LayoutHeader>
+			</el-header>
+			<el-container>
+				<el-aside>
+					<LayoutMenu></LayoutMenu>
+				</el-aside>
+				<el-main>
 					<router-view />
-				</div>
-			</div>
-		</div>
+				</el-main>
+			</el-container>
+		</el-container>
 	</main>
 </template>
 
@@ -34,65 +32,40 @@ export default defineComponent({
 
 <style scoped lang="stylus">
 
-@import "../style/basic.styl"
-
 $top-height = 60px
 $left-side-width = 80px
 
+.el-header {
+    height: 48px
+    position: relative
+    background-color: #ffffff
+    color: var(--el-text-color-primary)
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12)
+    z-index: 2
+}
+
+.el-aside {
+    width: 160px
+    height: 100%
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12)
+    background-color: #ffffff
+}
+
+.el-main {
+  padding: 0
+}
+
 .main-container {
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-  width 100%
-  height 100%
-  background #eeeeee
-  box-sizing border-box
-  display flex
-  flex-direction column
-  justify-content space-between
-
-  .top {
-    position relative
-    width 100%
-    height $top-height
-    margin-bottom 1px
-  }
-
-  .bottom {
-    position relative
-    box-sizing border-box
+    position absolute
+    left 0
+    right 0
+    top 0
+    bottom 0
     width 100%
     height 100%
+    background #eeeeee
     display flex
-    justify-content space-between
-
-    .left {
-      position relative
-      width $left-side-width
-      height 100%
-      box-sizing border-box
-    }
-
-    .right {
-      position relative
-      width 100%
-      height 100%
-      box-sizing border-box
-      background #eeeeee
-      padding 0px 1px 1px 1px
-
-      .content {
-        position relative
-        width 100%
-        height 100%
-        background $background-color
-        box-sizing border-box
-        padding 10px
-      }
-    }
-  }
+    flex-direction column
 }
 
 .page-links {

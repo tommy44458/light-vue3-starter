@@ -12,10 +12,10 @@ module.exports = {
         expect: true,
     },
     extends: [
+        'prettier',
+        'airbnb-base',
         'plugin:vue/vue3-essential',
         '@vue/eslint-config-typescript/recommended',
-        'airbnb-base',
-        'prettier',
     ],
     plugins: ['prettier', 'vue'],
     parserOptions: {
@@ -26,11 +26,32 @@ module.exports = {
     rules: {
         semi: 'off',
         quotes: ['warn', 'single'],
+        indent: ['warn', 'tab'],
+        'max-len': [
+            'warn',
+            {
+                code: 120,
+                ignoreComments: true,
+                ignoreTrailingComments: true,
+                ignoreUrls: true,
+                ignorePattern: '^\\s*var\\s.+=\\s*require\\s*\\(',
+            },
+        ],
         'no-unused-vars': 'warn',
         'no-console': 'off',
         'no-tabs': 'off',
         'no-restricted-syntax': 'off',
         'func-names': 'off',
+        'arrow-parens': ['error', 'as-needed'],
+        'object-curly-newline': [
+            'error',
+            {
+                ObjectExpression: { consistent: true, multiline: true },
+                ObjectPattern: { consistent: true, multiline: true },
+                ImportDeclaration: 'never',
+                ExportDeclaration: { multiline: true, minProperties: 3 },
+            },
+        ],
     },
     settings: {
         'import/resolver': {
@@ -68,6 +89,19 @@ module.exports = {
                 'no-tabs': 'off',
                 'no-restricted-syntax': 'off',
                 'func-names': 'off',
+                'arrow-parens': ['error', 'as-needed'],
+                'object-curly-newline': [
+                    'error',
+                    {
+                        ObjectExpression: { consistent: true, multiline: true },
+                        ObjectPattern: { consistent: true, multiline: true },
+                        ImportDeclaration: 'never',
+                        ExportDeclaration: {
+                            multiline: true,
+                            minProperties: 3,
+                        },
+                    },
+                ],
             },
         },
     ],

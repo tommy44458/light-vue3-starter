@@ -1,109 +1,73 @@
 <template>
-	<aside class="nav">
-		<ul class="nav-list">
-			<li
-				class="nav-item flex-center"
-				v-for="(nav, index) in navList"
-				:key="index"
-				:class="{ active: nav.isActive }"
-				@click="navClick(nav)"
-			>
-				{{ nav.name }}
-			</li>
-		</ul>
-	</aside>
+	<el-menu
+		default-active="1"
+		class="el-menu-vertical"
+		:collapse="isCollapse"
+		@open="handleOpen"
+		@close="handleClose"
+	>
+		<el-menu-item index="1">
+			<el-icon>
+				<SvgIcon name="neulive" />
+			</el-icon>
+			<template #title>Device</template>
+		</el-menu-item>
+		<el-menu-item index="2" @click="router.push('/layout-test')">
+			<el-icon>
+				<SvgIcon name="project" />
+			</el-icon>
+			<template #title>Project</template>
+		</el-menu-item>
+		<el-menu-item index="3" @click="router.push('/home')">
+			<el-icon>
+				<SvgIcon name="document" />
+			</el-icon>
+			<template #title>Document</template>
+		</el-menu-item>
+		<el-menu-item index="4">
+			<el-icon>
+				<SvgIcon name="user" />
+			</el-icon>
+			<template #title>User</template>
+		</el-menu-item>
+		<el-menu-item index="5" class="sidebar-menu-footer">
+			<el-icon>
+				<SvgIcon name="setting" />
+			</el-icon>
+			<template #title>Setting</template>
+		</el-menu-item>
+	</el-menu>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted, watch } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { NavItem } from '@/common/types/index.ts'
 
-export default defineComponent({
-	name: 'layout-nav',
+import SvgIcon from '@/components/SvgIcon.vue'
 
-	setup() {
-		const router = useRouter()
+const isCollapse = ref(false)
 
-		const reactiveData = reactive({
-			navList: [
-				{
-					name: 'Home',
-					isActive: false,
-					path: '/',
-				},
-				{
-					name: 'T1',
-					isActive: false,
-					path: '/',
-				},
-				{
-					name: 'T2',
-					isActive: false,
-					path: '/',
-				},
-			],
+const handleOpen = (key: string, keyPath: string[]) => {
+	console.log(key, keyPath)
+}
+const handleClose = (key: string, keyPath: string[]) => {
+	console.log(key, keyPath)
+}
 
-			navClick(e: NavItem) {
-				router.push(e.path)
-			},
-		})
-
-		const changeNavActive = (currentPath: string) => {
-			reactiveData.navList.forEach((v: NavItem) => {
-				const temp = v
-				temp.isActive = temp.path === currentPath
-				return temp
-			})
-		}
-
-		watch(
-			() => router.currentRoute.value,
-			_n => {
-				changeNavActive(_n.path)
-			},
-		)
-
-		onMounted(() => {
-			router.isReady().then(() => {
-				changeNavActive(router.currentRoute.value.path)
-			})
-		})
-
-		return {
-			...toRefs(reactiveData),
-		}
-	},
-})
+const router = useRouter()
 </script>
 
 <style scoped lang="stylus">
 
-@import "../style/basic.styl"
+.el-menu {
+    height: 100%
+    border-right: none
+    text-align: left
+}
 
-.nav {
-  position relative
-  width 100%
-  height 100%
-  box-sizing border-box
-  background: #fff
-
-  .nav-list {
-
-    .nav-item {
-      box-sizing border-box
-      width 100%
-      height 60px
-      cursor pointer
-
-      &.active {
-        font-weight bold
-        background $second-background-color
-      }
-
-    }
-
-  }
-
+.sidebar-menu-footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
 }
 </style>
