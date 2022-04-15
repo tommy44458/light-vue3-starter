@@ -44,13 +44,6 @@ $left-side-width = 80px
     z-index: 2
 }
 
-.el-aside {
-    width: 160px
-    height: 100%
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12)
-    background-color: #ffffff
-}
-
 .el-main {
   padding: 16px
 }

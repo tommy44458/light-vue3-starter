@@ -1,7 +1,8 @@
 <template>
 	<el-menu
+		class="side-menu"
 		:default-active="reactiveData.activeIndex"
-		:collapse="isCollapse"
+		:collapse="reactiveData.isCollapse"
 		:unique-opened="true"
 		@open="handleOpen"
 		@close="handleClose"
@@ -12,7 +13,7 @@
 					:key="index"
 					:index="item.path"
 					:route="item.path"
-					class="menu-footer"
+					class="footer"
 					@click="router.push(item.path)"
 				>
 					<el-icon>
@@ -39,13 +40,11 @@
 </template>
 
 <script setup lang="ts">
-import { watch, ref, reactive } from 'vue'
+import { onMounted, watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import SvgIcon from '@/components/SvgIcon.vue'
 import MenuItem from '@/types/index.ts'
-
-const isCollapse = ref(false)
 
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
@@ -85,11 +84,28 @@ const reactiveData = reactive({
 		},
 	],
 
+	isCollapse: false,
 	activeIndex: null,
 
 	itemClick(e: MenuItem) {
 		router.push(e.path)
 	},
+})
+
+const onResize = () => {
+	// const { width } = useWindowSize()
+	console.log(window.innerWidth)
+	if (window.innerWidth < 872) {
+		reactiveData.isCollapse = true
+		console.log(reactiveData.isCollapse)
+	} else {
+		reactiveData.isCollapse = false
+	}
+}
+
+onMounted(() => {
+	window.addEventListener('resize', onResize)
+	onResize()
 })
 
 watch(
@@ -98,25 +114,20 @@ watch(
 		reactiveData.activeIndex = _n.path
 	},
 )
-
-// onMounted(() => {
-// 	router.isReady().then(() => {
-// 		reactiveData.activeIndex = router.currentRoute.value.path
-// 	})
-// })
 </script>
 
 <style scoped lang="stylus">
-
-.el-menu {
+.side-menu {
     height: 100%
     border-right: none
     text-align: left
-}
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12)
+    max-width 160px
 
-.menu-footer {
-  bottom: 0;
-  width: 100%;
-  position: absolute;
+    .footer {
+        bottom: 0;
+        width: 100%;
+        position: absolute;
+    }
 }
 </style>
