@@ -22,8 +22,10 @@ const defaultRouteConfiguras = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     routes: routeConfiguras.concat(defaultRouteConfiguras),
 })
+
+console.log(process.env.BASE_URL)
 
 export default router

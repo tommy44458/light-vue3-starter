@@ -14,6 +14,9 @@ export default ({ mode, command }: { mode: string, command: string }) => {
     // vite config
     return defineConfig({
         base: './',
+        define: {
+            'process.env': ENV,
+        },
         plugins: [
             vue(),
             AutoImport({
