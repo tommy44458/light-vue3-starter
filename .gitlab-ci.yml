@@ -16,23 +16,23 @@ Install Dependencies:
     - yarn install
   when: manual
 
-Test:
-  stage: test
-  script:
-    - yarn test
+# Test:
+#   stage: test
+#   script:
+#     - yarn test
 
 Dev:
   stage: dev
   script:
     - yarn dev
 
-Build:
-  stage: build
-  script:
-    - yarn build
-  artifacts:
-    paths:
-      - public
+# Build:
+#   stage: build
+#   script:
+#     - yarn build
+#   artifacts:
+#     paths:
+#       - public
 
 # Docker Build:
 #   before_script:
