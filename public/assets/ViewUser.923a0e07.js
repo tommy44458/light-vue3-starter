@@ -1,0 +1,1 @@
+import{K as a,c as e,o as s,a as r}from"./index.2caddedd.js";const d={},o={class:"page-container"},t=[r("div",{class:"page-title"},"BioPro UI User",-1)];var i=a(d,[["render",function(a,r){return s(),e("div",o,t)}]]);export{i as default};
