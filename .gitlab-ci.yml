@@ -1,0 +1,49 @@
+stages:
+  - install_deps
+  - test
+  - build
+  - package
+  - dev
+
+default:
+  image: node:lts
+  before_script:
+    - yarn install
+
+Install Dependencies:
+  stage: install_deps
+  script:
+    - yarn install
+  when: manual
+
+Test:
+  stage: test
+  script:
+    - yarn test
+
+Dev:
+  stage: dev
+  script:
+    - yarn dev
+
+Build:
+  stage: build
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - public
+
+# Docker Build:
+#   before_script:
+#     # to skip default before_script
+#     - docker info
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+#   stage: package
+#   image: docker:stable
+#   services:
+#     - docker:dind
+#   script:
+#     - docker build -t ${CI_REGISTRY_IMAGE}/gprg:latest .
+#     - docker push ${CI_REGISTRY_IMAGE}/gprg:latest
