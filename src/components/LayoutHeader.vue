@@ -1,10 +1,30 @@
 <template>
-	<div class="header">
-		<SvgIcon name="hambegur" class="hambegur" />
-		<div @click="router.push('/device')">
-			<SvgIcon name="logo" class="logo" />
-		</div>
-	</div>
+	<el-row :gutter="20">
+		<el-col :span="6">
+			<div class="grid-content bg-purple">
+				<el-space wrap :size="16">
+					<SvgIcon name="hambegur" class="hambegur" />
+					<div @click="router.push('/device')">
+						<SvgIcon name="logo" class="logo" />
+					</div>
+				</el-space>
+			</div>
+		</el-col>
+		<el-col :span="6">
+			<div class="grid-content bg-purple" />
+		</el-col>
+		<el-col :span="6">
+			<div class="grid-content bg-purple" />
+		</el-col>
+		<el-col :span="6" class="ml-4">
+			<div class="grid-content-right bg-purple">
+				<el-space wrap :size="0">
+					<SvgIcon name="bell" class="bell" />
+					<SvgIcon name="user_solid" class="user-solid" />
+				</el-space>
+			</div>
+		</el-col>
+	</el-row>
 </template>
 
 <script lang="ts" setup>
@@ -15,25 +35,54 @@ const router = useRouter()
 </script>
 
 <style scoped lang="stylus">
-.hambegur {
-    width 16px
-    height 16px
-    display flex
+
+.el-row {
     align-items center
-    margin-right 16px
+    padding: 12px 0 12px 0;
 }
 
-.logo {
-    width 51.03px
-    height 24px
-    display flex
-    align-items center
+.bg-purple {
+	background: #ffffff;
 }
 
-.header {
-    width 100%
-    height 100%
-    display flex
-    align-items center
+.grid-content-right {
+    text-align right
+
+    .bell {
+        width 26px
+        height 24px
+        display flex
+        align-items center
+        color #606666
+        margin-right 16px
+    }
+
+    .user-solid {
+        width 24px
+        height 24px
+        display flex
+        align-items center
+        color #A9B2B2
+    }
+}
+
+.grid-content {
+	border-radius 4px;
+	height: 24px;
+    text-align left
+
+    .logo {
+        width 51.03px
+        height 24px
+        display flex
+        align-items center
+    }
+
+    .hambegur {
+        width 16px
+        height 16px
+        display flex
+        align-items center
+    }
 }
 </style>
