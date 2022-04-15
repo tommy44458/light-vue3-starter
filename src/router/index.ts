@@ -12,7 +12,7 @@ Object.keys(routeFiles).forEach(routeModule => {
 const defaultRouteConfiguras = [
     {
         path: '/',
-        redirect: '/home',
+        redirect: '/device',
     },
     {
         name: 'layout-test',

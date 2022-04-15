@@ -1,49 +1,49 @@
 <template>
 	<el-menu
-		default-active="1"
-		class="el-menu-vertical"
+		:default-active="reactiveData.activeIndex"
 		:collapse="isCollapse"
+		:unique-opened="true"
 		@open="handleOpen"
 		@close="handleClose"
 	>
-		<el-menu-item index="1">
-			<el-icon>
-				<SvgIcon name="neulive" />
-			</el-icon>
-			<template #title>Device</template>
-		</el-menu-item>
-		<el-menu-item index="2" @click="router.push('/layout-test')">
-			<el-icon>
-				<SvgIcon name="project" />
-			</el-icon>
-			<template #title>Project</template>
-		</el-menu-item>
-		<el-menu-item index="3" @click="router.push('/home')">
-			<el-icon>
-				<SvgIcon name="document" />
-			</el-icon>
-			<template #title>Document</template>
-		</el-menu-item>
-		<el-menu-item index="4">
-			<el-icon>
-				<SvgIcon name="user" />
-			</el-icon>
-			<template #title>User</template>
-		</el-menu-item>
-		<el-menu-item index="5" class="sidebar-menu-footer">
-			<el-icon>
-				<SvgIcon name="setting" />
-			</el-icon>
-			<template #title>Setting</template>
-		</el-menu-item>
+		<template v-for="(item, index) in reactiveData.menuItem" :key="index">
+			<template v-if="index === reactiveData.menuItem.length - 1">
+				<el-menu-item
+					:key="index"
+					:index="item.path"
+					:route="item.path"
+					class="menu-footer"
+					@click="router.push(item.path)"
+				>
+					<el-icon>
+						<SvgIcon :name="item.icon" />
+					</el-icon>
+					<template #title>{{ item.title }}</template>
+				</el-menu-item>
+			</template>
+			<template v-else>
+				<el-menu-item
+					:key="index"
+					:index="item.path"
+					:route="`\${item.path}`"
+					@click="router.push(item.path)"
+				>
+					<el-icon>
+						<SvgIcon :name="item.icon" />
+					</el-icon>
+					<template #title>{{ item.title }}</template>
+				</el-menu-item>
+			</template>
+		</template>
 	</el-menu>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { watch, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import SvgIcon from '@/components/SvgIcon.vue'
+import MenuItem from '@/types/index.ts'
 
 const isCollapse = ref(false)
 
@@ -55,6 +55,55 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 
 const router = useRouter()
+
+const reactiveData = reactive({
+	menuItem: [
+		{
+			path: '/device',
+			icon: 'neulive',
+			title: 'Device',
+		},
+		{
+			path: '/project',
+			icon: 'project',
+			title: 'Project',
+		},
+		{
+			path: '/document',
+			icon: 'document',
+			title: 'Document',
+		},
+		{
+			path: '/user',
+			icon: 'user',
+			title: 'User',
+		},
+		{
+			path: '/setting',
+			icon: 'setting',
+			title: 'Setting',
+		},
+	],
+
+	activeIndex: null,
+
+	itemClick(e: MenuItem) {
+		router.push(e.path)
+	},
+})
+
+watch(
+	() => router.currentRoute.value,
+	_n => {
+		reactiveData.activeIndex = _n.path
+	},
+)
+
+// onMounted(() => {
+// 	router.isReady().then(() => {
+// 		reactiveData.activeIndex = router.currentRoute.value.path
+// 	})
+// })
 </script>
 
 <style scoped lang="stylus">
@@ -65,7 +114,7 @@ const router = useRouter()
     text-align: left
 }
 
-.sidebar-menu-footer {
+.menu-footer {
   bottom: 0;
   width: 100%;
   position: absolute;

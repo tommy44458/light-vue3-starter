@@ -52,7 +52,7 @@ $left-side-width = 80px
 }
 
 .el-main {
-  padding: 0
+  padding: 16px
 }
 
 .main-container {

@@ -1,5 +1,5 @@
-export interface NavItem {
+export interface MenuItem {
     path: string
-    name: string
-    isActive: boolean
+    title: string
+    icon: string
 }
