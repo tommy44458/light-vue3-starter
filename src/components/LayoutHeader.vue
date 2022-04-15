@@ -1,6 +1,6 @@
 <template>
-	<el-row :gutter="20">
-		<el-col :span="6">
+	<el-row :gutter="0">
+		<el-col :span="12">
 			<div class="grid-content bg-purple">
 				<el-space wrap :size="16">
 					<SvgIcon name="hambegur" class="hambegur" />
@@ -10,13 +10,7 @@
 				</el-space>
 			</div>
 		</el-col>
-		<el-col :span="6">
-			<div class="grid-content bg-purple" />
-		</el-col>
-		<el-col :span="6">
-			<div class="grid-content bg-purple" />
-		</el-col>
-		<el-col :span="6" class="ml-4">
+		<el-col :span="12" class="ml-4">
 			<div class="grid-content-right bg-purple">
 				<el-space wrap :size="0">
 					<SvgIcon name="bell" class="bell" />
@@ -42,7 +36,7 @@ const router = useRouter()
 }
 
 .bg-purple {
-	background: #ffffff;
+	background: #231342;
 }
 
 .grid-content-right {
