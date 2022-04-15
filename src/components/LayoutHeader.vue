@@ -36,7 +36,7 @@ const router = useRouter()
 }
 
 .bg-purple {
-	background: #231342;
+	background: #ffffff;
 }
 
 .grid-content-right {
