@@ -21,18 +21,18 @@ Install Dependencies:
 #   script:
 #     - yarn test
 
-Dev:
-  stage: dev
-  script:
-    - yarn dev
-
-# Build:
-#   stage: build
+# Dev:
+#   stage: dev
 #   script:
-#     - yarn build
-#   artifacts:
-#     paths:
-#       - public
+#     - yarn dev
+
+Build:
+  stage: build
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - public
 
 # Docker Build:
 #   before_script:
