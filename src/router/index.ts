@@ -26,6 +26,4 @@ const router = createRouter({
     routes: routeConfiguras.concat(defaultRouteConfiguras),
 })
 
-console.error(process.env)
-
 export default router
