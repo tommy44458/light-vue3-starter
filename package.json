@@ -35,9 +35,11 @@
     "vite": "^2.7.2",
     "vite-plugin-cdn-import": "^0.3.5",
     "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-windicss": "^1.8.4",
     "vue": "^3.2.25",
     "vue-router": "4",
-    "vue-window-size": "^1.1.2"
+    "vue-window-size": "^1.1.2",
+    "windicss": "^3.5.1"
   },
   "peerDependencies": {},
   "devDependencies": {

@@ -1,61 +1,56 @@
 import { defineStore } from 'pinia'
 import piniaInstance from '@/store'
 
+// console.log(SCREENS)
+// const screens = windiConfig.theme.extend.screens
 interface LayoutState {
-    rwd: {
-        pad: number
-        phone: number
+    screens: {
+        sm: number,
+        md: number,
+        lg: number,
+        xl: number,
     }
     currentWidth: number
     sideMenu: {
         isCollapse: boolean
         isDisplay: boolean
-        width: number
     }
 }
 
 export const layout = defineStore('layout', {
     state: (): LayoutState => ({
-        rwd: {
-            pad: 1024,
-            phone: 640,
+        screens: {
+            sm: 640,
+            md: 768,
+            lg: 1024,
+            xl: 1280,
         },
         currentWidth: 1600,
         sideMenu: {
-            isCollapse: false,
+            isCollapse: true,
             isDisplay: true,
-            width: 160,
         },
     }),
     getters: {
-        sideMenuDisplayStyle: (state: LayoutState) => {
-            if (state.sideMenu.isDisplay) {
-                return 'block'
-            }
-            return 'none'
-        },
-        sideMenuWidthStyle: (state: LayoutState) => `${state.sideMenu.width}px`,
+        sideMenuDisplayStyle: (state: LayoutState) => (state.sideMenu.isDisplay ? 'block' : 'none'),
     },
     actions: {
         windowResize(payload: { size: number }) {
             this.currentWidth = payload.size
-            if (this.currentWidth < this.rwd.phone) {
+            if (this.currentWidth < this.screens.sm) {
                 this.sideMenu.isDisplay = false
-                this.sideMenu.width = 64
-            } else if (this.currentWidth < this.rwd.pad) {
+            } else if (this.currentWidth < this.screens.xl) {
                 this.sideMenu.isCollapse = true
                 this.sideMenu.isDisplay = true
-                this.sideMenu.width = 64
             } else {
                 this.sideMenu.isCollapse = false
                 this.sideMenu.isDisplay = true
-                this.sideMenu.width = 160
             }
         },
         clickSideMenuIcon() {
-            if (this.currentWidth < this.rwd.pad) {
-                this.sideMenu.isDisplay = !this.sideMenu.isDisplay
+            if (this.currentWidth < this.screens.xl) {
                 this.sideMenu.isCollapse = true
+                this.sideMenu.isDisplay = !this.sideMenu.isDisplay
             } else {
                 this.sideMenu.isCollapse = !this.sideMenu.isCollapse
             }

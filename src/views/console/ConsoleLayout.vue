@@ -5,15 +5,10 @@
 				<LayoutHeader></LayoutHeader>
 			</ElHeader>
 			<ElContainer>
-				<ElAside
-					:style="{
-						width: layoutStore.sideMenuWidthStyle,
-						display: layoutStore.sideMenuDisplayStyle,
-					}"
-				>
+				<ElAside :style="{ display: layoutStore.sideMenuDisplayStyle }">
 					<LayoutMenu></LayoutMenu>
 				</ElAside>
-				<ElMain>
+				<ElMain class="!p-16px !-md:p-12px !-sm:p-8px">
 					<RouterView />
 				</ElMain>
 			</ElContainer>
@@ -39,8 +34,8 @@ const layoutStore = uselayoutStore()
     box-shadow 0px 0px 12px rgba(0, 0, 0, 0.12)
     z-index 2
 
-.el-main
-  padding: 16px
+.el-aside
+    width unset !important
 
 .main-container
     position absolute
@@ -53,8 +48,4 @@ const layoutStore = uselayoutStore()
     background #eeeeee
     display flex
     flex-direction column
-
-.page-links > a
-    font-weight bold
-    margin 0 20px
 </style>

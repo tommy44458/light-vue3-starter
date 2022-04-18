@@ -3,6 +3,7 @@ import ElementPlus from 'element-plus'
 import 'virtual:svg-icons-register'
 
 import '@/assets/scss/index.scss'
+import 'virtual:windi.css'
 
 import pinia from '@/store'
 import router from '@/router'

@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import WindiCSS from 'vite-plugin-windicss'
 import importToCDN from 'vite-plugin-cdn-import'// import by CDN (only import needed)
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -19,6 +20,7 @@ export default ({ mode, command }: { mode: string, command: string }) => {
         },
         plugins: [
             vue(),
+            WindiCSS(),
             AutoImport({
                 resolvers: [ElementPlusResolver()],
             }),

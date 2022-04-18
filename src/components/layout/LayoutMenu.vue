@@ -8,37 +8,19 @@
 		@close="handleClose"
 	>
 		<template v-for="(item, index) in consoleRoutesArray" :key="index">
-			<template v-if="item.name === 'console-setting'">
-				<ElMenuItem
-					:key="index"
-					:index="item.name"
-					:route="`/${item.path}`"
-					class="footer"
-					@click="router.push(item.path)"
-				>
-					<ElIcon>
-						<SvgIcon :name="item.meta.icon" />
-					</ElIcon>
-					<template #title>
-						{{ item.meta.title }}
-					</template>
-				</ElMenuItem>
-			</template>
-			<template v-else>
-				<ElMenuItem
-					:key="index"
-					:index="item.name"
-					:route="`/${item.path}`"
-					@click="router.push(item.path)"
-				>
-					<ElIcon>
-						<SvgIcon :name="item.meta.icon" />
-					</ElIcon>
-					<template #title>
-						{{ item.meta.title }}
-					</template>
-				</ElMenuItem>
-			</template>
+			<ElMenuItem
+				:index="item.name"
+				:route="`/${item.path}`"
+				:class="{ footer: index == consoleRoutesArray.length - 1 }"
+				@click="router.push(item.path)"
+			>
+				<ElIcon>
+					<SvgIcon :name="item.meta.icon" />
+				</ElIcon>
+				<template #title v-if="!layoutStore.sideMenu.isCollapse">
+					{{ item.meta.title }}
+				</template>
+			</ElMenuItem>
 		</template>
 	</ElMenu>
 </template>
@@ -85,6 +67,9 @@ const handleClose = (key: string, keyPath: string[]) => {
 </script>
 
 <style scoped lang="stylus">
+.el-menu:not(.el-menu--collapse)
+  width 160px
+
 .side-menu
     height 100%
     border-right none
@@ -93,6 +78,5 @@ const handleClose = (key: string, keyPath: string[]) => {
 
     .footer
         bottom 0
-        width 100%
         position absolute
 </style>
