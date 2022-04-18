@@ -40,7 +40,7 @@ import { onMounted } from 'vue'
 import { successNotification } from '@/common/message.ts'
 
 onMounted(() => {
-	successNotification('Wellcome', '')
+	successNotification('Wellcome', '111')
 })
 </script>
 

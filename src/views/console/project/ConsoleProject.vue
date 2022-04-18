@@ -4,7 +4,14 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { successNotification } from '@/common/message.ts'
+import { ElNotification } from 'element-plus'
 
-console.error('successNotification')
+onMounted(() => {
+	ElNotification({
+		title: 'Info',
+		message: 'This is an info message',
+		type: 'info',
+	})
+	console.error('onMounted')
+})
 </script>

@@ -1,7 +1,6 @@
 import { ElNotification } from 'element-plus'
 
 export function successNotification(title: string, message: string) {
-    console.error('successNotification')
     ElNotification({
         title,
         message,
