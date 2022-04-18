@@ -19,7 +19,9 @@
 					<ElIcon>
 						<SvgIcon :name="item.meta.icon" />
 					</ElIcon>
-					<template #title>{{ item.meta.title }}</template>
+					<template #title>
+						{{ item.meta.title }}
+					</template>
 				</ElMenuItem>
 			</template>
 			<template v-else>
@@ -32,7 +34,9 @@
 					<ElIcon>
 						<SvgIcon :name="item.meta.icon" />
 					</ElIcon>
-					<template #title>{{ item.meta.title }}</template>
+					<template #title>
+						{{ item.meta.title }}
+					</template>
 				</ElMenuItem>
 			</template>
 		</template>
@@ -44,7 +48,6 @@ import { onMounted, watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { uselayoutStore } from '@/store/modules/layout.ts'
 
-import SvgIcon from '@/components/icon/SvgIcon.vue'
 import { consoleRoutesArray } from '@/router/modules/index.ts'
 
 const router = useRouter()

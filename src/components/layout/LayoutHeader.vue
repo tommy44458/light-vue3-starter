@@ -26,7 +26,6 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { uselayoutStore } from '@/store/modules/layout.ts'
-import SvgIcon from '@/components/icon/SvgIcon.vue'
 
 const router = useRouter()
 const layoutStore = uselayoutStore()
