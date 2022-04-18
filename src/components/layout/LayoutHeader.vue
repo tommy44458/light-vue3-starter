@@ -1,17 +1,19 @@
 <template>
-	<ElRow :gutter="0">
+	<ElRow :gutter="20">
 		<ElCol :span="12">
-			<div class="grid-content bg-purple">
+			<div class="grid-content grid-bg">
 				<ElSpace wrap :size="16">
-					<SvgIcon name="hambegur" class="hambegur" />
-					<div @click="router.push('/device')">
+					<div @click="layoutStore.clickSideMenuIcon()">
+						<SvgIcon name="side_menu" class="side_menu" />
+					</div>
+					<div @click="router.push('/console')">
 						<SvgIcon name="logo" class="logo" />
 					</div>
 				</ElSpace>
 			</div>
 		</ElCol>
-		<ElCol :span="12" class="ml-4">
-			<div class="grid-content-right bg-purple">
+		<ElCol :span="12">
+			<div class="grid-content-right grid-bg">
 				<ElSpace wrap :size="0">
 					<SvgIcon name="bell" class="bell" />
 					<SvgIcon name="user_solid" class="user-solid" />
@@ -23,60 +25,53 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
+import { uselayoutStore } from '@/store/modules/layout.ts'
 import SvgIcon from '@/components/icon/SvgIcon.vue'
 
 const router = useRouter()
+const layoutStore = uselayoutStore()
 </script>
 
 <style scoped lang="stylus">
-
-.el-row {
+.el-row
+    height 100%
     align-items center
-    padding: 12px 0 12px 0;
-}
 
-.bg-purple {
-	background: #ffffff;
-}
+.grid-bg
+	background rgba(255,255,255,1)
 
-.grid-content-right {
+.grid-content
+    text-align left
+
+    .side_menu
+        width 16px
+        height 16px
+        display flex
+        align-items center
+        cursor pointer
+
+    .logo
+        width 51.03px
+        height 24px
+        display flex
+        align-items center
+        cursor pointer
+
+.grid-content-right
     text-align right
 
-    .bell {
+    .bell
         width 26px
         height 24px
         display flex
         align-items center
         color #606666
         margin-right 16px
-    }
 
-    .user-solid {
+    .user-solid
         width 24px
         height 24px
         display flex
         align-items center
-        color #A9B2B2
-    }
-}
-
-.grid-content {
-	border-radius 4px;
-	height: 24px;
-    text-align left
-
-    .logo {
-        width 51.03px
-        height 24px
-        display flex
-        align-items center
-    }
-
-    .hambegur {
-        width 16px
-        height 16px
-        display flex
-        align-items center
-    }
-}
+        color #606666
 </style>

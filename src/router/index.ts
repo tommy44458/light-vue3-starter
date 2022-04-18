@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { consoleRoutesArray } from '@/router/modules'
 
 import PageNotFound from '@/views/PageNotFound.vue'
 import ConsoleLayout from '@/views/console/ConsoleLayout.vue'
-import { consoleRoutesArray } from '@/router/modules'
 
 const routeConfiguras: RouteRecordRaw[] = []
 

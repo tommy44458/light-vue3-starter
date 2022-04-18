@@ -5,7 +5,12 @@
 				<LayoutHeader></LayoutHeader>
 			</ElHeader>
 			<ElContainer>
-				<ElAside>
+				<ElAside
+					:style="{
+						width: layoutStore.sideMenuWidthStyle,
+						display: layoutStore.sideMenuDisplayStyle,
+					}"
+				>
 					<LayoutMenu></LayoutMenu>
 				</ElAside>
 				<ElMain>
@@ -19,24 +24,25 @@
 <script setup lang="ts">
 import LayoutHeader from '@/components/layout/LayoutHeader.vue'
 import LayoutMenu from '@/components/layout/LayoutMenu.vue'
+import { uselayoutStore } from '@/store/modules/layout.ts'
+
+const layoutStore = uselayoutStore()
 </script>
 
 <style scoped lang="stylus">
 
-.el-header {
-    height: 48px
-    position: relative
-    background-color: #ffffff
-    color: var(--el-text-color-primary)
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12)
-    z-index: 2
-}
+.el-header
+    height 48px
+    position relative
+    background-color #ffffff
+    color var(--el-text-color-primary)
+    box-shadow 0px 0px 12px rgba(0, 0, 0, 0.12)
+    z-index 2
 
-.el-main {
+.el-main
   padding: 16px
-}
 
-.main-container {
+.main-container
     position absolute
     left 0
     right 0
@@ -47,12 +53,8 @@ import LayoutMenu from '@/components/layout/LayoutMenu.vue'
     background #eeeeee
     display flex
     flex-direction column
-}
 
-.page-links {
-  a {
-    font-weight: bold;
-    margin: 0 20px;
-  }
-}
+.page-links > a
+    font-weight bold
+    margin 0 20px
 </style>
