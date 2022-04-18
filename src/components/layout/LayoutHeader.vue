@@ -6,7 +6,7 @@
 					<div @click="layoutStore.clickSideMenuIcon()">
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
-					<div @click="router.push('/console')">
+					<div @click="router.push('/')">
 						<SvgIcon name="logo" class="logo" />
 					</div>
 				</ElSpace>
@@ -38,7 +38,7 @@ const layoutStore = uselayoutStore()
     align-items center
 
 .grid-bg
-	background rgba(255,255,255,1)
+	background rgba(255,255,255,0)
 
 .grid-content
     text-align left

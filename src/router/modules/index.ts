@@ -1,10 +1,12 @@
-import { RouteRecordRaw } from 'vue-router'
-
 export const modules = ['console']
 
 // import all route in subfolder
+// consoleRoutes: {
+//     './console/{name}.ts': module
+// }
 const consoleRoutes = import.meta.globEager('@/router/modules/console/*')
-export const consoleRoutesArray: RouteRecordRaw[] = Object.keys(consoleRoutes).map(index => {
-    const singleRoute: RouteRecordRaw = consoleRoutes[index]?.default
+
+export const consoleRoutesArray = Object.keys(consoleRoutes).map(index => {
+    const singleRoute = consoleRoutes[index]?.default
     return singleRoute
-})
+}).sort((a, b) => (a.meta.order > b.meta.order ? 1 : -1))

@@ -1,6 +1,7 @@
 export default {
     name: 'console-project',
     meta: {
+        order: 2,
         title: 'Project',
         icon: 'project',
     },

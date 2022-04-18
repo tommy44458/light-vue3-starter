@@ -1,6 +1,7 @@
 export default {
     name: 'console-device',
     meta: {
+        order: 1,
         title: 'Device',
         icon: 'device',
     },

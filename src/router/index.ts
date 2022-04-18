@@ -6,6 +6,8 @@ import ConsoleLayout from '@/views/console/ConsoleLayout.vue'
 
 const routeConfiguras: RouteRecordRaw[] = []
 
+console.log(consoleRoutesArray)
+
 // default route
 const defaultRouteConfiguras: RouteRecordRaw[] = [
     {
@@ -19,6 +21,7 @@ const defaultRouteConfiguras: RouteRecordRaw[] = [
         name: 'root',
         path: '/',
         redirect: '/console/device',
+
     },
     {
         name: '404',
