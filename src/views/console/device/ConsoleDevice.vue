@@ -36,9 +36,12 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { successNotification } from '@/common/message.ts'
 
-successNotification('Wellcome', '')
+onMounted(() => {
+	successNotification('Wellcome', '')
+})
 </script>
 
 <style scoped lang="stylus">
