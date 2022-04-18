@@ -26,8 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, reactive } from 'vue'
-import { useRouter } from 'vue-router'
 import { uselayoutStore } from '@/store/modules/layout.ts'
 
 import { consoleRoutesArray } from '@/router/modules/index.ts'

@@ -1,4 +1,6 @@
 node_modules/
 build/
+dist/
 .eslintrc.js
-components.d
+components.d.ts
+auto-imports.d.ts

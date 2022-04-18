@@ -36,11 +36,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { successNotification } from '@/common/message.ts'
-
 onMounted(() => {
-	successNotification('Wellcome', '111')
+	ElNotification({
+		title: 'Wellcome',
+		message: 'This is an info message',
+		type: 'success',
+	})
 })
 </script>
 

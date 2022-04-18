@@ -1,5 +1,3 @@
-import { ElNotification } from 'element-plus'
-
 export function successNotification(title: string, message: string) {
     ElNotification({
         title,

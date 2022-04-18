@@ -3,9 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { ElNotification } from 'element-plus'
-
 onMounted(() => {
 	ElNotification({
 		title: 'Info',

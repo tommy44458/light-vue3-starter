@@ -37,6 +37,8 @@ module.exports = {
                 ignorePattern: '^\\s*var\\s.+=\\s*require\\s*\\(',
             },
         ],
+        'no-unref': 'off',
+        'no-undef': 'off',
         'no-unused-vars': 'warn',
         'no-console': 'off',
         'no-tabs': 'off',

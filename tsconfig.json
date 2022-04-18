@@ -51,7 +51,7 @@
     "./node_modules/**/*",
   ],
   "include": [
-    "next-env.d.ts",
+    "auto-imports.d.ts",
     "src/*",
     "**/*.ts",
     "**/*.tsx",
