@@ -16,6 +16,11 @@ const defaultRouteConfiguras: RouteRecordRaw[] = [
         children: consoleRoutesArray,
     },
     {
+        name: 'root',
+        path: '/',
+        redirect: '/console/device',
+    },
+    {
         name: '404',
         path: '/:pathMatch(.*)*',
         component: PageNotFound,
