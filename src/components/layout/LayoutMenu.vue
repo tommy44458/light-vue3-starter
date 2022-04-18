@@ -78,5 +78,6 @@ const handleClose = (key: string, keyPath: string[]) => {
 
     .footer
         bottom 0
+        width 100%
         position absolute
 </style>
