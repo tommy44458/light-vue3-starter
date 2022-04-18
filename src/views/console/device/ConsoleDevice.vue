@@ -1,37 +1,37 @@
 <template>
-	<el-row :gutter="20">
-		<el-col :span="6"><div class="grid-content bg-purple-dark" /></el-col>
-		<el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content bg-purple-light" /></el-col>
-		<el-col :span="6">
+	<ElRow :gutter="20">
+		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
+		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
+		<ElCol :span="6"><div class="grid-content bg-purple-light" /></ElCol>
+		<ElCol :span="6">
 			<div class="grid-content bg-purple"></div>
-		</el-col>
-	</el-row>
-	<el-row :gutter="20">
-		<el-col :span="6"><div class="grid-content bg-purple-dark" /></el-col>
-		<el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-		<el-col :span="6"><div class="grid-content bg-purple-light" /></el-col>
-		<el-col :span="6">
+		</ElCol>
+	</ElRow>
+	<ElRow :gutter="20" class="mt-4">
+		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
+		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
+		<ElCol :span="6"><div class="grid-content bg-purple-light" /></ElCol>
+		<ElCol :span="6">
 			<div class="grid-content bg-purple"></div>
-		</el-col>
-	</el-row>
-	<el-row class="mb-2">
-		<el-button>Default</el-button>
-		<el-button type="primary">Primary</el-button>
-		<el-button type="success">Success</el-button>
-		<el-button type="info">Info</el-button>
-		<el-button type="warning">Warning</el-button>
-		<el-button type="danger">Danger</el-button>
-	</el-row>
+		</ElCol>
+	</ElRow>
+	<ElRow class="mt-4">
+		<ElButton>Default</ElButton>
+		<ElButton type="primary">Primary</ElButton>
+		<ElButton type="success">Success</ElButton>
+		<ElButton type="info">Info</ElButton>
+		<ElButton type="warning">Warning</ElButton>
+		<ElButton type="danger">Danger</ElButton>
+	</ElRow>
 
-	<el-row class="mt-9">
-		<el-button plain>Plain</el-button>
-		<el-button type="primary" plain>Primary</el-button>
-		<el-button type="success" plain>Success</el-button>
-		<el-button type="info" plain>Info</el-button>
-		<el-button type="warning" plain>Warning</el-button>
-		<el-button type="danger" plain>Danger</el-button>
-	</el-row>
+	<ElRow class="mt-4">
+		<ElButton plain>Plain</ElButton>
+		<ElButton type="primary" plain>Primary</ElButton>
+		<ElButton type="success" plain>Success</ElButton>
+		<ElButton type="info" plain>Info</ElButton>
+		<ElButton type="warning" plain>Warning</ElButton>
+		<ElButton type="danger" plain>Danger</ElButton>
+	</ElRow>
 </template>
 
 <script setup lang="ts">
@@ -41,13 +41,13 @@ successNotification('Wellcome', '')
 </script>
 
 <style scoped lang="stylus">
-.el-row
+.ElRow
 	margin-bottom 20px
 
-.el-row:last-child
+.ElRow:last-child
 	margin-bottom 0
 
-.el-col
+.ElCol
 	border-radius 4px
 
 .bg-purple-dark
