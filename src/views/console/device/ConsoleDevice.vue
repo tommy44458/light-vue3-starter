@@ -1,5 +1,6 @@
 <template>
-	<ElRow :gutter="20">
+	UI Device
+	<ElRow :gutter="20" class="mt-4">
 		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
 		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
 		<ElCol :span="6"><div class="grid-content bg-purple-light" /></ElCol>
@@ -41,13 +42,13 @@ successNotification('Wellcome', '')
 </script>
 
 <style scoped lang="stylus">
-.ElRow
+.el-row
 	margin-bottom 20px
 
-.ElRow:last-child
+.el-row:last-child
 	margin-bottom 0
 
-.ElCol
+.el-col
 	border-radius 4px
 
 .bg-purple-dark

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import * as ElementPlus from 'element-plus'
+import ElementPlus from 'element-plus'
 import 'virtual:svg-icons-register'
 
 import '@/assets/scss/index.scss'
@@ -12,7 +12,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 
+app.use(ElementPlus)
 app.use(pinia)
 app.use(router)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 app.mount('#app')
