@@ -14,7 +14,7 @@ export default ({ mode, command }: { mode: string, command: string }) => {
     const ENV = loadEnv(mode, process.cwd()) // load (dev || prod) .env
     // vite config
     return defineConfig({
-        base: './',
+        base: '/',
         define: {
             'process.env': ENV,
         },
