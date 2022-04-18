@@ -1,7 +1,7 @@
 <template>
 	<ElRow :gutter="20">
 		<ElCol :span="12">
-			<div class="grid-content justify-start">
+			<div class="header-grid justify-start">
 				<ElSpace wrap :size="16">
 					<div @click="layoutStore.clickSideMenuIcon()">
 						<SvgIcon name="side_menu" class="side_menu" />
@@ -13,7 +13,7 @@
 			</div>
 		</ElCol>
 		<ElCol :span="12">
-			<div class="grid-content justify-end">
+			<div class="header-grid justify-end">
 				<ElSpace wrap :size="0">
 					<SvgIcon name="bell" class="bell" w:m="r-16px" />
 					<SvgIcon name="user_solid" class="user-solid" />
@@ -36,7 +36,7 @@ const layoutStore = uselayoutStore()
     height 100%
     align-items center
 
-.grid-content
+.header-grid
     display flex
     align-items center
 
