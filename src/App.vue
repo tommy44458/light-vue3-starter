@@ -1,9 +1,11 @@
 <template>
-	<LayoutMain />
+	<router-view />
 </template>
 
+//
 <script setup lang="ts">
-import LayoutMain from '@/components/LayoutMain.vue'
+// import LayoutMain from '@/components/layout/LayoutMain.vue'
+//
 </script>
 
 <style>

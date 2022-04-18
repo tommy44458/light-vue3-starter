@@ -1,5 +1,5 @@
 <template>
-	<el-menu
+	<ElMenu
 		class="side-menu"
 		:default-active="reactiveData.activeIndex"
 		:collapse="reactiveData.isCollapse"
@@ -8,43 +8,44 @@
 		@close="handleClose"
 	>
 		<template v-for="(item, index) in reactiveData.menuItem" :key="index">
-			<template v-if="index === reactiveData.menuItem.length - 1">
-				<el-menu-item
+			<template v-if="item.name === 'console-setting'">
+				<ElMenuItem
 					:key="index"
-					:index="item.path"
-					:route="item.path"
+					:index="item.name"
+					:route="`/${item.path}`"
 					class="footer"
 					@click="router.push(item.path)"
 				>
-					<el-icon>
-						<SvgIcon :name="item.icon" />
-					</el-icon>
-					<template #title>{{ item.title }}</template>
-				</el-menu-item>
+					<ElIcon>
+						<SvgIcon :name="item.meta.icon" />
+					</ElIcon>
+					<template #title>{{ item.meta.title }}</template>
+				</ElMenuItem>
 			</template>
 			<template v-else>
-				<el-menu-item
+				<ElMenuItem
 					:key="index"
-					:index="item.path"
-					:route="`\${item.path}`"
+					:index="item.name"
+					:route="`/${item.path}`"
 					@click="router.push(item.path)"
 				>
-					<el-icon>
-						<SvgIcon :name="item.icon" />
-					</el-icon>
-					<template #title>{{ item.title }}</template>
-				</el-menu-item>
+					<ElIcon>
+						<SvgIcon :name="item.meta.icon" />
+					</ElIcon>
+					<template #title>{{ item.meta.title }}</template>
+				</ElMenuItem>
 			</template>
 		</template>
-	</el-menu>
+	</ElMenu>
 </template>
 
 <script setup lang="ts">
 import { onMounted, watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import SvgIcon from '@/components/SvgIcon.vue'
+import SvgIcon from '@/components/icon/SvgIcon.vue'
 import MenuItem from '@/types/index.ts'
+import { consoleRoutesArray } from '@/router/modules/index.ts'
 
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
@@ -56,33 +57,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 const router = useRouter()
 
 const reactiveData = reactive({
-	menuItem: [
-		{
-			path: '/device',
-			icon: 'neulive',
-			title: 'Device',
-		},
-		{
-			path: '/project',
-			icon: 'project',
-			title: 'Project',
-		},
-		{
-			path: '/document',
-			icon: 'document',
-			title: 'Document',
-		},
-		{
-			path: '/user',
-			icon: 'user',
-			title: 'User',
-		},
-		{
-			path: '/setting',
-			icon: 'setting',
-			title: 'Setting',
-		},
-	],
+	menuItem: consoleRoutesArray,
 
 	isCollapse: false,
 	activeIndex: null,
@@ -104,6 +79,7 @@ const onResize = () => {
 }
 
 onMounted(() => {
+	reactiveData.activeIndex = router.currentRoute.value.name
 	window.addEventListener('resize', onResize)
 	onResize()
 })
@@ -111,7 +87,7 @@ onMounted(() => {
 watch(
 	() => router.currentRoute.value,
 	_n => {
-		reactiveData.activeIndex = _n.path
+		reactiveData.activeIndex = _n.name
 	},
 )
 </script>

@@ -1,23 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-// import all route in /modules
-const routeFiles = import.meta.globEager('@/router/modules/*')
+import PageNotFound from '@/views/PageNotFound.vue'
+import ConsoleLayout from '@/views/console/ConsoleLayout.vue'
+import { consoleRoutesArray } from '@/router/modules'
+
 const routeConfiguras: RouteRecordRaw[] = []
 
-Object.keys(routeFiles).forEach(routeModule => {
-    routeFiles[routeModule]?.default && routeConfiguras.push(routeFiles[routeModule]?.default)
-})
-
 // default route
-const defaultRouteConfiguras = [
+const defaultRouteConfiguras: RouteRecordRaw[] = [
     {
-        path: '/',
-        redirect: '/device',
+        name: 'console',
+        path: '/console/:pathMatch(.*)*',
+        redirect: '/console/device',
+        component: ConsoleLayout,
+        children: consoleRoutesArray,
     },
     {
-        name: 'layout-test',
-        path: '/layout-test',
-        component: () => import('@/views/LayoutTest.vue'),
+        name: '404',
+        path: '/:pathMatch(.*)*',
+        component: PageNotFound,
     },
 ]
 

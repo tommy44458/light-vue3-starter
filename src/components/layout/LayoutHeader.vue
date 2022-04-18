@@ -1,29 +1,29 @@
 <template>
-	<el-row :gutter="0">
-		<el-col :span="12">
+	<ElRow :gutter="0">
+		<ElCol :span="12">
 			<div class="grid-content bg-purple">
-				<el-space wrap :size="16">
+				<ElSpace wrap :size="16">
 					<SvgIcon name="hambegur" class="hambegur" />
 					<div @click="router.push('/device')">
 						<SvgIcon name="logo" class="logo" />
 					</div>
-				</el-space>
+				</ElSpace>
 			</div>
-		</el-col>
-		<el-col :span="12" class="ml-4">
+		</ElCol>
+		<ElCol :span="12" class="ml-4">
 			<div class="grid-content-right bg-purple">
-				<el-space wrap :size="0">
+				<ElSpace wrap :size="0">
 					<SvgIcon name="bell" class="bell" />
 					<SvgIcon name="user_solid" class="user-solid" />
-				</el-space>
+				</ElSpace>
 			</div>
-		</el-col>
-	</el-row>
+		</ElCol>
+	</ElRow>
 </template>
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import SvgIcon from '@/components/SvgIcon.vue'
+import SvgIcon from '@/components/icon/SvgIcon.vue'
 
 const router = useRouter()
 </script>

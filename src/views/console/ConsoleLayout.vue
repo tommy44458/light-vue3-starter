@@ -1,39 +1,27 @@
 <template>
 	<main class="main-container">
-		<el-container>
-			<el-header>
+		<ElContainer>
+			<ElHeader>
 				<LayoutHeader></LayoutHeader>
-			</el-header>
-			<el-container>
-				<el-aside>
+			</ElHeader>
+			<ElContainer>
+				<ElAside>
 					<LayoutMenu></LayoutMenu>
-				</el-aside>
-				<el-main>
-					<router-view />
-				</el-main>
-			</el-container>
-		</el-container>
+				</ElAside>
+				<ElMain>
+					<RouterView />
+				</ElMain>
+			</ElContainer>
+		</ElContainer>
 	</main>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import LayoutHeader from '@/components/LayoutHeader.vue'
-import LayoutMenu from '@/components/LayoutMenu.vue'
-
-export default defineComponent({
-	name: 'layout-main',
-	components: {
-		LayoutHeader,
-		LayoutMenu,
-	},
-})
+<script setup lang="ts">
+import LayoutHeader from '@/components/layout/LayoutHeader.vue'
+import LayoutMenu from '@/components/layout/LayoutMenu.vue'
 </script>
 
 <style scoped lang="stylus">
-
-$top-height = 60px
-$left-side-width = 80px
 
 .el-header {
     height: 48px
