@@ -1,5 +1,5 @@
 <template>
-	<h1>UI Document</h1>
+	<h1>UI File</h1>
 	<el-row :gutter="20" class="mt-4">
 		<el-col :span="6"><div class="grid-content bg-purple-dark" /></el-col>
 		<el-col :span="6"><div class="grid-content bg-purple" /></el-col>
@@ -16,9 +16,6 @@
 .el-row
 	margin-bottom 20px
 
-.el-row:last-child
-	margin-bottom 0
-
 .el-col
 	border-radius 4px
 
@@ -34,8 +31,4 @@
 .grid-content
 	border-radius 4px
 	min-height 36px
-
-.row-bg
-	padding 10px 0
-	background-color #f9fafc
 </style>
