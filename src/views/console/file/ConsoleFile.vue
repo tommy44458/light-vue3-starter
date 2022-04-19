@@ -19,7 +19,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="stylus">
-
 .grid-content-file
-	height 36px
+    height 36px
 </style>

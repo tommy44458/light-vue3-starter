@@ -1,3 +1,5 @@
+import ConsoleDevice from '@/views/console/device/ConsoleDevice.vue'
+
 export default {
     name: 'console-device',
     meta: {
@@ -6,5 +8,5 @@ export default {
         icon: 'device',
     },
     path: 'device',
-    component: () => import('@/views/console/device/ConsoleDevice.vue'),
+    component: ConsoleDevice,
 }

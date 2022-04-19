@@ -25,27 +25,14 @@ const layoutStore = uselayoutStore()
 </script>
 
 <style scoped lang="stylus">
-
 .el-header
     height 48px
     position relative
-    background-color #ffffff
+    background-color #fff
     color var(--el-text-color-primary)
-    box-shadow 0px 0px 12px rgba(0, 0, 0, 0.12)
+    box-shadow 0 0 12px rgba(0, 0, 0, 0.12)
     z-index 2
 
 .el-aside
     width unset !important
-
-.main-container
-    position absolute
-    left 0
-    right 0
-    top 0
-    bottom 0
-    width 100%
-    height 100%
-    background #eeeeee
-    display flex
-    flex-direction column
 </style>

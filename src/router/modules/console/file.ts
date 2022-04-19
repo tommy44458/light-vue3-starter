@@ -1,3 +1,5 @@
+import ConsoleFile from '@/views/console/file/ConsoleFile.vue'
+
 export default {
     name: 'console-file',
     meta: {
@@ -6,5 +8,5 @@ export default {
         icon: 'file',
     },
     path: 'file',
-    component: () => import('@/views/console/file/ConsoleFile.vue'),
+    component: ConsoleFile,
 }

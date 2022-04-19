@@ -1,3 +1,5 @@
+import ConsoleSetting from '@/views/console/setting/ConsoleSetting.vue'
+
 export default {
     name: 'console-setting',
     meta: {
@@ -6,5 +8,5 @@ export default {
         icon: 'setting',
     },
     path: 'setting',
-    component: () => import('@/views/console/setting/ConsoleSetting.vue'),
+    component: ConsoleSetting,
 }

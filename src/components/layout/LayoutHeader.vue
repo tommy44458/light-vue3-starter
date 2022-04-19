@@ -3,10 +3,13 @@
 		<ElCol :span="12">
 			<div class="header-grid justify-start">
 				<ElSpace wrap :size="16">
-					<div @click="layoutStore.clickSideMenuIcon()">
+					<div
+						@click="layoutStore.clickSideMenuIcon()"
+						class="cursor-pointer"
+					>
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
-					<div @click="router.push('/')">
+					<div @click="router.push('/')" class="cursor-pointer">
 						<SvgIcon name="logo" class="logo" />
 					</div>
 				</ElSpace>
@@ -42,12 +45,10 @@ const layoutStore = uselayoutStore()
     .side_menu
         width 16px
         height 16px
-        cursor pointer
 
     .logo
         width 51.03px
         height 24px
-        cursor pointer
 
     .bell
         width 26px

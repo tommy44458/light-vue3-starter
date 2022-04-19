@@ -1,3 +1,5 @@
+import ConsoleProject from '@/views/console/project/ConsoleProject.vue'
+
 export default {
     name: 'console-project',
     meta: {
@@ -6,5 +8,5 @@ export default {
         icon: 'project',
     },
     path: 'project',
-    component: () => import('@/views/console/project/ConsoleProject.vue'),
+    component: ConsoleProject,
 }

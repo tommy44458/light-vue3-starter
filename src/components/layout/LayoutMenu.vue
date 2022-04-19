@@ -66,13 +66,13 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 <style scoped lang="stylus">
 .el-menu:not(.el-menu--collapse)
-  width 160px
+    width 160px
 
 .side-menu
     height 100%
     border-right none
     text-align left
-    box-shadow 0px 0px 12px rgba(0, 0, 0, 0.12)
+    box-shadow 0 0 12px rgba(0, 0, 0, 0.12)
 
     .footer
         bottom 0

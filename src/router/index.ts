@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { consoleRoutesArray } from '@/router/modules'
+import { consoleRoutesArray, authRoutesArray } from '@/router/modules'
 
 import PageNotFound from '@/views/PageNotFound.vue'
 import ConsoleLayout from '@/views/console/ConsoleLayout.vue'
+import AuthLayout from '@/views/auth/AuthLayout.vue'
 
 const routeConfiguras: RouteRecordRaw[] = []
 
@@ -16,10 +17,16 @@ const defaultRouteConfiguras: RouteRecordRaw[] = [
         children: consoleRoutesArray,
     },
     {
+        name: 'auth',
+        path: '/auth/:pathMatch(.*)*',
+        redirect: '/auth/login',
+        component: AuthLayout,
+        children: authRoutesArray,
+    },
+    {
         name: 'root',
         path: '/',
         redirect: '/console/device',
-
     },
     {
         name: '404',
