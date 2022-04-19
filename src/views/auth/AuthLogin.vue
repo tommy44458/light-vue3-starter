@@ -8,7 +8,7 @@
 						<div class="flex-center">
 							<ElImage
 								class="h-50px"
-								src="/src/assets/icon/logo.svg"
+								:src="logoUrl"
 								fill="scale-down"
 							/>
 						</div>
@@ -45,6 +45,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '@/store/modules/auth.ts'
+import logoUrl from '@/assets/icon/logo.svg'
 
 const router = useRouter()
 const authStore = useAuthStore()
