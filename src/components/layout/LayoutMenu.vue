@@ -26,12 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import { uselayoutStore } from '@/store/modules/layout.ts'
+import { useLayoutStore } from '@/store/modules/layout.ts'
 
 import { consoleRoutesArray } from '@/router/modules/index.ts'
 
 const router = useRouter()
-const layoutStore = uselayoutStore()
+const layoutStore = useLayoutStore()
 
 const reactiveData = reactive({
 	activeIndex: null,

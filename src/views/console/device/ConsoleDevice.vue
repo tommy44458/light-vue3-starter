@@ -36,12 +36,11 @@
 </template>
 
 <script setup lang="ts">
+// import { useStorage } from 'vue3-storage'
+
 onMounted(() => {
-	ElNotification({
-		title: 'Wellcome',
-		message: 'This is an info message',
-		type: 'success',
-	})
+	// const storage = useStorage()
+	// storage.clearStorageSync()
 })
 </script>
 

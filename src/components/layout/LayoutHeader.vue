@@ -1,8 +1,8 @@
 <template>
 	<ElRow :gutter="20">
 		<ElCol :span="12">
-			<div class="header-grid justify-start">
-				<ElSpace wrap :size="16">
+			<div class="flex-center justify-start">
+				<ElSpace wrap :size="16" class="justify-start">
 					<div
 						@click="layoutStore.clickSideMenuIcon()"
 						class="cursor-pointer"
@@ -16,10 +16,15 @@
 			</div>
 		</ElCol>
 		<ElCol :span="12">
-			<div class="header-grid justify-end">
+			<div class="flex-center justify-end">
 				<ElSpace wrap :size="0">
 					<SvgIcon name="bell" class="bell" w:m="r-16px" />
-					<SvgIcon name="user_solid" class="user-solid" />
+					<SvgIcon
+						name="user_solid"
+						class="user-solid"
+						w:m="r-16px"
+					/>
+					<ElButton size="small" @click="logout()"> Logout </ElButton>
 				</ElSpace>
 			</div>
 		</ElCol>
@@ -27,10 +32,17 @@
 </template>
 
 <script setup lang="ts">
-import { uselayoutStore } from '@/store/modules/layout.ts'
+import { useLayoutStore } from '@/store/modules/layout.ts'
+import { useAuthStore } from '@/store/modules/auth.ts'
 
 const router = useRouter()
-const layoutStore = uselayoutStore()
+const layoutStore = useLayoutStore()
+const authStore = useAuthStore()
+
+const logout = () => {
+	authStore.logout()
+	router.push('/auth/login')
+}
 </script>
 
 <style scoped lang="stylus">
@@ -38,25 +50,21 @@ const layoutStore = uselayoutStore()
     height 100%
     align-items center
 
-.header-grid
-    display flex
-    align-items center
+.side_menu
+    width 16px
+    height 16px
 
-    .side_menu
-        width 16px
-        height 16px
+.logo
+    width 51.03px
+    height 24px
 
-    .logo
-        width 51.03px
-        height 24px
+.bell
+    width 26px
+    height 24px
+    color #606666
 
-    .bell
-        width 26px
-        height 24px
-        color #606666
-
-    .user-solid
-        width 24px
-        height 24px
-        color #606666
+.user-solid
+    width 24px
+    height 24px
+    color #606666
 </style>

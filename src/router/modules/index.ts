@@ -15,4 +15,3 @@ export const consoleRoutesArray = Object.keys(consoleRoutes).map(index => {
 // auth
 const authRoutes = import.meta.globEager('@/router/modules/auth/*')
 export const authRoutesArray = Object.keys(authRoutes).map(index => authRoutes[index]?.default)
-console.log(authRoutesArray)

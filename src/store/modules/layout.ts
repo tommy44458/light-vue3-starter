@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import piniaInstance from '@/store'
 
-// console.log(SCREENS)
-// const screens = windiConfig.theme.extend.screens
 interface LayoutState {
     screens: {
         sm: number,
@@ -32,7 +30,7 @@ export const layout = defineStore('layout', {
         },
     }),
     getters: {
-        sideMenuDisplayStyle: (state: LayoutState) => (state.sideMenu.isDisplay ? 'block' : 'none'),
+        sideMenuDisplayStyle: (state: LayoutState) => (state.sideMenu.isDisplay ? 'inline-block' : 'none'),
     },
     actions: {
         windowResize(payload: { size: number }) {
@@ -58,4 +56,4 @@ export const layout = defineStore('layout', {
     },
 })
 
-export const uselayoutStore = () => layout(piniaInstance)
+export const useLayoutStore = () => layout(piniaInstance)

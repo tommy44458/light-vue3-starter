@@ -1,18 +1,20 @@
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
+import Vue3Storage from 'vue3-storage'
 import 'virtual:svg-icons-register'
 
 import '@/assets/scss/index.scss'
 import 'virtual:windi.css'
 
 import pinia from '@/store'
-import router from '@/router'
+import router from './permission'
 
 import App from './App.vue'
 
 const app = createApp(App)
 
 app.use(ElementPlus)
+app.use(Vue3Storage)
 app.use(pinia)
 app.use(router)
 app.mount('#app')
