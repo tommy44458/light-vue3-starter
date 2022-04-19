@@ -1,9 +1,9 @@
 <template>
-	<ElRow :gutter="20" class="h-screen w-full">
+	<ElRow :gutter="20" class="h-screen">
 		<ElCol :span="6"> </ElCol>
 		<ElCol :span="12">
 			<template class="h-full flex-center">
-				<ElCard class="w-400px p-10px">
+				<ElCard class="min-w-400px p-10px">
 					<el-space :fill="true" :size="20" wrap>
 						<div class="flex-center">
 							<ElImage
