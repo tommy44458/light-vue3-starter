@@ -72,6 +72,7 @@ export default ({ mode, command }: { mode: string, command: string }) => {
         ],
         resolve: {
             alias: {
+                mqtt: 'mqtt/dist/mqtt.js',
                 '@': resolve(__dirname, resolve('src')),
             },
         },

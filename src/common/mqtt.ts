@@ -5,31 +5,36 @@ interface MqttHook {
     subscribe: (topicArray: string[], qos: mqtt.QoS) => void,
     unSubscribe: (unTopic: string) => void,
     publish: (topic: string, message: string, qos: mqtt.QoS) => void,
+    registerEvent: (topic: string, callback: (topic: string, message: string) => void, vm?: any) => void,
+    unRegisterEvent: (topic: string, vm?: any) => void,
+    clearEvent: () => void,
+}
+
+interface Listener {
+    callback: any
+    vm: any
 }
 
 // eslint-disable-next-line no-restricted-globals
-let mqttHost = location.href.split('/')[2]
-if (process.env.MQTT_HOST !== 'localhost') {
-    mqttHost = process.env.MQTT_HOST
-}
+const mqttHost = location.href.split('/')[2]
 
 const option: mqtt.IClientOptions = {
     protocol: 'ws',
     host: mqttHost,
-    port: parseInt(process.env.MQTT_PORT, 10),
+    port: parseInt(process.env.VITE_MQTT_PORT, 10),
     clean: false,
     keepalive: 60,
     clientId: `mqtt_client_${Math.random().toString(16).substring(2, 10)}`,
     connectTimeout: 4000,
 }
 
+if (process.env.VITE_MQTT_HOST !== 'localhost' && process.env.VITE_MQTT_HOST != null) {
+    option.host = process.env.VITE_MQTT_HOST
+}
+
 let client: mqtt.MqttClient | null = null
 
-const messageEvent: any = {
-    'dc:a6:32:6c:bc:b4/data_server/system_resource': (message: string) => {
-        console.log('func', message)
-    },
-}
+const messageListeners = new Map()
 
 const onConnectFail = () => {
     client.on('error', error => {
@@ -38,14 +43,39 @@ const onConnectFail = () => {
     })
 }
 
+const eq = (str1: string, str2: string) => {
+    let arr1 = str1.split('/')
+    let arr2 = str2.split('/')
+    if (!str1.includes('#') && !str2.includes('#') && arr1.length !== arr2.length) {
+        return false
+    }
+    if (arr2.length < arr1.length) {
+        arr2 = str1.split('/')
+        arr1 = str2.split('/')
+    }
+    let ret = true
+    arr1.forEach((val, i) => {
+        if (val === '+' || val === '#'
+            || (arr2[i] && arr2[i] === '+')
+            || (arr2[i] && arr2[i] === '#')
+            || (arr2[i] && arr2[i] === val)) {
+            return
+        }
+        ret = false
+    })
+    return ret
+}
+
 const onMessage = () => {
     client.on('message', (topic: string, message: string) => {
         if (message) {
-            console.log('from', topic, ': ', message.toString())
-            // const res = JSON.parse(message.toString())
-            if (topic in messageEvent) {
-                messageEvent[topic](message)
-            }
+            messageListeners.forEach((listeners, key) => {
+                if (eq(topic, key) && listeners && listeners.length) {
+                    listeners.forEach((listener: Listener) => {
+                        listener.callback(topic, message)
+                    })
+                }
+            })
         }
     })
 }
@@ -57,7 +87,7 @@ const onReconnect = () => {
 }
 
 const connect = () => {
-    client = mqtt.connect(option)
+    client = mqtt.connect(`${option.protocol}://${option.host}:${option.port}`, option)
     client.on('connect', e => {
         console.log('success connect to host:', e)
     })
@@ -90,6 +120,35 @@ const publish = (topic: string, message: string, qos: mqtt.QoS = 0) => {
     }
 }
 
+const registerEvent = (topic: string, callback: (topic: string, message: string) => void, vm: any | null = null) => {
+    if (typeof callback === 'function') {
+        messageListeners.has(topic) || messageListeners.set(topic, [])
+        messageListeners.get(topic).push({ callback, vm })
+    }
+}
+
+const unRegisterEvent = (topic: string, vm: any | null = null) => {
+    const listeners = messageListeners.get(topic)
+    let index = -1
+
+    if (listeners && listeners.length) {
+        listeners.forEach((i: number, element: { callback: any, vm: any }) => {
+            if (typeof element.callback === 'function' && element.vm === vm) {
+                index = i
+            }
+        })
+
+        if (index > -1) {
+            listeners.splice(index, 1)
+            messageListeners.set(topic, listeners)
+        }
+    }
+}
+
+const clearEvent = () => {
+    messageListeners.clear()
+}
+
 export const mqttHook = (): MqttHook => {
     if (client == null) {
         connect()
@@ -100,6 +159,9 @@ export const mqttHook = (): MqttHook => {
         subscribe,
         unSubscribe,
         publish,
+        registerEvent,
+        unRegisterEvent,
+        clearEvent,
     }
 }
 

@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
 import piniaInstance from '@/store'
+import { useMQTT } from '@/common/mqtt'
+
+const mqtt = useMQTT()
 
 interface LayoutState {
     screens: {
@@ -57,3 +60,9 @@ export const layout = defineStore('layout', {
 })
 
 export const useLayoutStore = () => layout(piniaInstance)
+
+mqtt.registerEvent('#/data_server/system_resource', (topic: string, message: string) => {
+    console.log('layout', topic, message.toString())
+    const layoutStore = useLayoutStore()
+    layoutStore.sideMenu.isCollapse = !layoutStore.sideMenu.isCollapse
+})
