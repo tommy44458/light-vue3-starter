@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { useLayoutStore } from '@/store/modules/layout.ts'
+import { useLayoutStore } from '@/store/modules/layout'
 
-import { consoleRoutesArray } from '@/router/modules/index.ts'
+import { consoleRoutesArray } from '@/router/modules/index'
 
 const router = useRouter()
 const layoutStore = useLayoutStore()

@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { useLayoutStore } from '@/store/modules/layout.ts'
-import { useAuthStore } from '@/store/modules/auth.ts'
+import { useLayoutStore } from '@/store/modules/layout'
+import { useAuthStore } from '@/store/modules/auth'
 
 const router = useRouter()
 const layoutStore = useLayoutStore()

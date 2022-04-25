@@ -54,6 +54,17 @@ module.exports = {
                 ExportDeclaration: { multiline: true, minProperties: 3 },
             },
         ],
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                js: 'never',
+                mjs: 'never',
+                jsx: 'never',
+                ts: 'never',
+                tsx: 'never',
+            },
+        ],
     },
     settings: {
         'import/resolver': {
@@ -86,6 +97,7 @@ module.exports = {
                 '@typescript-eslint/indent': ['warn', 4],
                 '@typescript-eslint/no-unused-expressions': 'off',
                 '@typescript-eslint/no-unused-vars': 'warn',
+                '@typescript-eslint/no-explicit-any': 'off',
                 'no-unused-vars': 'warn',
                 'no-console': 'off',
                 'no-tabs': 'off',

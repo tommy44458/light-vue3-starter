@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/store/modules/auth.ts'
+import { useAuthStore } from '@/store/modules/auth'
 import logoUrl from '@/assets/icon/logo.svg'
 
 const router = useRouter()

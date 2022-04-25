@@ -1,10 +1,12 @@
 # Vue 3 + TypeScript + Vite
 
+Vue3 + Vite + TypeScript + Pinia + WindiCSS + ElementPlus + Stylus + Airbnb Design rule (Eslint, Stylelint)
+
 This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+-   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
 ## Type Support For `.vue` Imports in TS
 

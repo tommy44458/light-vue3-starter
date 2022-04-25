@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import LayoutHeader from '@/components/layout/LayoutHeader.vue'
 import LayoutMenu from '@/components/layout/LayoutMenu.vue'
-import { useLayoutStore } from '@/store/modules/layout.ts'
+import { useLayoutStore } from '@/store/modules/layout'
 
 const layoutStore = useLayoutStore()
 </script>
