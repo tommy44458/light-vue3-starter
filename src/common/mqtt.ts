@@ -2,9 +2,9 @@ import mqtt from 'mqtt'
 
 interface MqttHook {
     disconnect: () => void,
-    subscribe: (topicArray: string[], qos: mqtt.QoS) => void,
+    subscribe: (topicArray: string[], qos?: mqtt.QoS) => void,
     unSubscribe: (unTopic: string) => void,
-    publish: (topic: string, message: string, qos: mqtt.QoS) => void,
+    publish: (topic: string, message: string, qos?: mqtt.QoS) => void,
     registerEvent: (topic: string, callback: (topic: string, message: string) => void, vm?: any) => void,
     unRegisterEvent: (topic: string, vm?: any) => void,
     clearEvent: () => void,
