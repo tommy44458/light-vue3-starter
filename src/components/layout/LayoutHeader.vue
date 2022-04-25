@@ -18,11 +18,11 @@
 		<ElCol :span="12">
 			<div class="flex-center justify-end">
 				<ElSpace wrap :size="0">
-					<SvgIcon name="bell" class="bell" w:m="r-16px" />
+					<SvgIcon name="bell" class="bell" w:m="r-28px" />
 					<SvgIcon
 						name="user_solid"
 						class="user-solid"
-						w:m="r-16px"
+						w:m="r-32px"
 					/>
 					<ElButton size="small" @click="logout()"> Logout </ElButton>
 				</ElSpace>
@@ -59,7 +59,7 @@ const logout = () => {
     height 24px
 
 .bell
-    width 26px
+    width 24px
     height 24px
     color #606666
 

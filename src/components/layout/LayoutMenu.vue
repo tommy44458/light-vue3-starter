@@ -72,7 +72,6 @@ const handleClose = (key: string, keyPath: string[]) => {
     height 100%
     border-right none
     text-align left
-    box-shadow 0 0 12px rgba(0, 0, 0, 0.12)
 
     .footer
         bottom 0

@@ -11,7 +11,7 @@ interface MqttHook {
 }
 
 interface Listener {
-    callback: any
+    callback: (topic: string, message: string) => void
     vm: any
 }
 
@@ -36,13 +36,6 @@ let client: mqtt.MqttClient | null = null
 
 const messageListeners = new Map()
 
-const onConnectFail = () => {
-    client.on('error', error => {
-        console.log('connect fail', error)
-        client.end()
-    })
-}
-
 const eq = (str1: string, str2: string) => {
     let arr1 = str1.split('/')
     let arr2 = str2.split('/')
@@ -64,6 +57,13 @@ const eq = (str1: string, str2: string) => {
         ret = false
     })
     return ret
+}
+
+const onConnectFail = () => {
+    client.on('error', error => {
+        console.log('connect fail', error)
+        client.end()
+    })
 }
 
 const onMessage = () => {
@@ -132,7 +132,7 @@ const unRegisterEvent = (topic: string, vm: any | null = null) => {
     let index = -1
 
     if (listeners && listeners.length) {
-        listeners.forEach((i: number, element: { callback: any, vm: any }) => {
+        listeners.forEach((i: number, element: Listener) => {
             if (typeof element.callback === 'function' && element.vm === vm) {
                 index = i
             }

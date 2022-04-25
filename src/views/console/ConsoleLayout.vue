@@ -44,7 +44,7 @@ mqtt.registerEvent(
     position relative
     background-color #fff
     color var(--el-text-color-primary)
-    box-shadow 0 0 12px rgba(0, 0, 0, 0.12)
+    border 1px solid #E3ECED
     z-index 2
 
 .el-aside
