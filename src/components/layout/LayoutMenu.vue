@@ -9,7 +9,7 @@
 	>
 		<template v-for="(item, index) in consoleRoutesArray" :key="index">
 			<ElMenuItem
-				:index="item.name"
+				:index="String(item.name)"
 				:route="`/${item.path}`"
 				:class="{ footer: index == consoleRoutesArray.length - 1 }"
 				@click="router.push(item.path)"
@@ -52,7 +52,7 @@ onMounted(() => {
 watch(
 	() => router.currentRoute.value,
 	_n => {
-		reactiveData.activeIndex = _n.name
+		reactiveData.activeIndex = String(_n.name)
 	},
 )
 
