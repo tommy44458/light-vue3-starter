@@ -28,6 +28,7 @@
     "element-plus": "^2.1.9",
     "mitt": "^3.0.0",
     "mqtt": "^4.3.7",
+    "mqtt-vue-hook": "^1.1.10",
     "pinia": "^2.0.11",
     "postcss": "^8.4.12",
     "postcss-html": "^1.4.1",

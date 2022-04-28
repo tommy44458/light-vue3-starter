@@ -36,11 +36,28 @@
 </template>
 
 <script setup lang="ts">
-// import { useStorage } from 'vue3-storage'
+import { useMQTT } from 'mqtt-vue-hook'
+
+const mqttHook = useMQTT()
 
 onMounted(() => {
-	// const storage = useStorage()
-	// storage.clearStorageSync()
+	mqttHook.subscribe(['+/data_server/system_resource'], 1)
+	mqttHook.registerEvent(
+		'+/data_server/system_resource',
+		(topic: string, message: string) => {
+			console.log('device', message.toString(), topic)
+			ElNotification({
+				title: 'System Resource',
+				message: message.toString(),
+				type: 'info',
+			})
+		},
+	)
+})
+
+onUnmounted(() => {
+	mqttHook.unRegisterEvent('+/data_server/system_resource')
+	mqttHook.unSubscribe('+/data_server/system_resource')
 })
 </script>
 

@@ -1,10 +1,10 @@
 import router from '@/router'
 import { useAuthStore } from '@/store/modules/auth'
 
-router.beforeEach((to, from, next) => {
-    console.log('middleware：', to, from)
+router.beforeEach((_to, _from, next) => {
+    // console.log('middleware：', to, from)
     const authStore = useAuthStore()
-    if (to.path !== '/auth/login') {
+    if (_to.path !== '/auth/login') {
         if (authStore.getCurrentAccount() == null) {
             router.push('/auth/login')
         } else {

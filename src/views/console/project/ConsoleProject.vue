@@ -9,6 +9,5 @@ onMounted(() => {
 		message: 'This is an info message',
 		type: 'info',
 	})
-	console.error('onMounted')
 })
 </script>
