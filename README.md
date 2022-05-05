@@ -4,6 +4,12 @@ This template should help get you started developing with Vue 3, Pinia, WindiCSS
 
 Check out the [Online DEMO](https://vue3-vite-pinia-windi-mqtt-starter.vercel.app/).
 
+```sh
+// login info
+Account: tommy
+Password: tommy
+```
+
 ## Recommended IDE Setup
 
 -   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
@@ -59,11 +65,4 @@ yarn build
 yarn lint
 // stylelint
 yarn lint:style
-```
-
-### Login
-
-```sh
-Account: tommy
-Password: tommy
 ```
