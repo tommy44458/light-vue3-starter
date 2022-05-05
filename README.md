@@ -1,6 +1,8 @@
 # Vue 3 + Vite + TypeScript + Pinia + WindiCSS + Mqtt + ESlint(Airbnb)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This template should help get you started developing with Vue 3, Pinia, WindiCSS, Mqtt and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs.
+
+Check out the [Online DEMO](https://vue3-vite-pinia-windi-mqtt-starter.vercel.app/).
 
 ## Recommended IDE Setup
 
