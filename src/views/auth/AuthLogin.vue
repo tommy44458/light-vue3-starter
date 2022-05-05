@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '@/store/modules/auth'
-import logoUrl from '@/assets/icon/logo.svg'
+import logoUrl from '@/assets/logo.png'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -58,7 +58,7 @@ const submitForm = async () => {
 
 	if (currentAccount != null) {
 		ElMessage.success(`Welcome, ${currentAccount}.`)
-		router.push('/console/device')
+		router.push('/console/page1')
 	} else {
 		ElMessage.error('Oops, your account or password are wrong.')
 	}

@@ -1,38 +1,64 @@
 <template>
-	<h1>Page1</h1>
-	<ElRow :gutter="20" class="mt-4">
-		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
-		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
-		<ElCol :span="6"><div class="grid-content bg-purple-light" /></ElCol>
-		<ElCol :span="6">
-			<div class="grid-content bg-purple"></div>
-		</ElCol>
-	</ElRow>
-	<ElRow :gutter="20" class="mt-4">
-		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
-		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
-		<ElCol :span="6"><div class="grid-content bg-purple-light" /></ElCol>
-		<ElCol :span="6">
-			<div class="grid-content bg-purple"></div>
-		</ElCol>
-	</ElRow>
-	<ElRow class="mt-4">
-		<ElButton>Default</ElButton>
-		<ElButton type="primary">Primary</ElButton>
-		<ElButton type="success">Success</ElButton>
-		<ElButton type="info">Info</ElButton>
-		<ElButton type="warning">Warning</ElButton>
-		<ElButton type="danger">Danger</ElButton>
-	</ElRow>
-
-	<ElRow class="mt-4">
-		<ElButton plain>Plain</ElButton>
-		<ElButton type="primary" plain>Primary</ElButton>
-		<ElButton type="success" plain>Success</ElButton>
-		<ElButton type="info" plain>Info</ElButton>
-		<ElButton type="warning" plain>Warning</ElButton>
-		<ElButton type="danger" plain>Danger</ElButton>
-	</ElRow>
+	<div class="mb-5 flex-center">
+		<h1>Publish data to MQTT broker</h1>
+	</div>
+	<ElForm :model="form" label-width="120px">
+		<ElFormItem label="Activity name">
+			<ElInput v-model="form.name" />
+		</ElFormItem>
+		<ElFormItem label="Activity zone">
+			<ElSelect
+				v-model="form.region"
+				placeholder="please select your zone"
+			>
+				<ElOption label="Zone one" value="shanghai" />
+				<ElOption label="Zone two" value="beijing" />
+			</ElSelect>
+		</ElFormItem>
+		<ElFormItem label="Activity time">
+			<ElCol :span="11">
+				<ElDatePicker
+					v-model="form.date1"
+					type="date"
+					placeholder="Pick a date"
+					style="width: 100%"
+				/>
+			</ElCol>
+			<ElCol :span="2" class="text-center">
+				<span class="text-gray-500">-</span>
+			</ElCol>
+			<ElCol :span="11">
+				<ElTimePicker
+					v-model="form.date2"
+					placeholder="Pick a time"
+					style="width: 100%"
+				/>
+			</ElCol>
+		</ElFormItem>
+		<ElFormItem label="Instant delivery">
+			<ElSwitch v-model="form.delivery" />
+		</ElFormItem>
+		<ElFormItem label="Activity type">
+			<ElCheckboxGroup v-model="form.type">
+				<ElCheckbox label="Online activities" name="type" />
+				<ElCheckbox label="Promotion activities" name="type" />
+				<ElCheckbox label="Offline activities" name="type" />
+				<ElCheckbox label="Simple brand exposure" name="type" />
+			</ElCheckboxGroup>
+		</ElFormItem>
+		<ElFormItem label="Resources">
+			<ElRadioGroup v-model="form.resource">
+				<ElRadio label="Sponsor" />
+				<ElRadio label="Venue" />
+			</ElRadioGroup>
+		</ElFormItem>
+		<ElFormItem label="Activity form">
+			<ElInput v-model="form.desc" type="textarea" />
+		</ElFormItem>
+		<ElFormItem>
+			<ElButton type="primary" @click="onPublish">Publish</ElButton>
+		</ElFormItem>
+	</ElForm>
 </template>
 
 <script setup lang="ts">
@@ -40,26 +66,57 @@ import { useMQTT } from 'mqtt-vue-hook'
 
 const mqttHook = useMQTT()
 
-onMounted(() => {
-	mqttHook.subscribe(['tommy44458/vue3/starter'], 1)
+const form = reactive({
+	name: '',
+	region: '',
+	date1: '',
+	date2: '',
+	delivery: false,
+	type: [],
+	resource: '',
+	desc: '',
+})
+
+const mqttSubscribe = () => {
+	mqttHook.subscribe(['tommy44458/vue3/starter/console/page1'], 1)
 	mqttHook.registerEvent(
-		'tommy44458/vue3/starter',
+		'tommy44458/vue3/starter/console/page1',
 		(topic: string, message: string) => {
 			const mesJson = JSON.parse(message.toString())
 			console.log(mesJson, topic)
 
 			ElNotification({
-				title: mesJson.title,
-				message: mesJson.message,
+				title: `MQTT TOPIC: ${topic}`,
+				message: mesJson,
 				type: 'info',
 			})
 		},
 	)
+}
+
+const onPublish = () => {
+	mqttHook.publish(
+		'tommy44458/vue3/starter/console/page1',
+		JSON.stringify({
+			name: form.name,
+			region: form.region,
+			date1: form.date1,
+			date2: form.date2,
+			delivery: form.delivery,
+			type: form.type,
+			resource: form.resource,
+			desc: form.desc,
+		}),
+	)
+}
+
+onMounted(() => {
+	mqttSubscribe()
 })
 
 onUnmounted(() => {
-	mqttHook.unRegisterEvent('tommy44458/vue3/starter')
-	mqttHook.unSubscribe('tommy44458/vue3/starter')
+	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page1')
+	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page1')
 })
 </script>
 
@@ -70,7 +127,7 @@ onUnmounted(() => {
 .el-row:last-child
     margin-bottom 0
 
-.el-col
+.ElCol
     border-radius 4px
 
 .bg-purple-dark

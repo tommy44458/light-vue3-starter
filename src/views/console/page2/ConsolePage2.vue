@@ -40,26 +40,30 @@ import { useMQTT } from 'mqtt-vue-hook'
 
 const mqttHook = useMQTT()
 
-onMounted(() => {
-	mqttHook.subscribe(['tommy44458/vue3/starter'], 1)
+const mqttSubscribe = () => {
+	mqttHook.subscribe(['tommy44458/vue3/starter/console/page2'], 1)
 	mqttHook.registerEvent(
-		'tommy44458/vue3/starter',
+		'tommy44458/vue3/starter/console/page2',
 		(topic: string, message: string) => {
 			const mesJson = JSON.parse(message.toString())
 			console.log(mesJson, topic)
 
 			ElNotification({
-				title: mesJson.title,
-				message: mesJson.message,
+				title: `MQTT TOPIC: ${topic}`,
+				message: mesJson,
 				type: 'info',
 			})
 		},
 	)
+}
+
+onMounted(() => {
+	mqttSubscribe()
 })
 
 onUnmounted(() => {
-	mqttHook.unRegisterEvent('tommy44458/vue3/starter')
-	mqttHook.unSubscribe('tommy44458/vue3/starter')
+	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page2')
+	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page2')
 })
 </script>
 
