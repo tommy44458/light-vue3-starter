@@ -15,7 +15,7 @@ This template should help get you started developing with Vue3, Pinia, WindiCSS,
 
 ![image](https://github.com/tommy44458/vue3-vite-pinia-windi-mqtt-starter/blob/main/src/assets/demo_page1.png)
 
-### Check out the [Online DEMO](https://vue3-vite-pinia-windi-mqtt-starter.vercel.app/).
+### Check out the [Online DEMO](https://light-vue3-starter-tommy44458.vercel.app/).
 
 ```sh
 // login info
