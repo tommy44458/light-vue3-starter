@@ -10,7 +10,7 @@
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
 					<div @click="router.push('/')" class="cursor-pointer">
-						<h1>TOMMY VUE3 STARTER</h1>
+						<h1>TOMMY STARTER</h1>
 					</div>
 				</ElSpace>
 			</div>
