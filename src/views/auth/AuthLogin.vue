@@ -7,7 +7,7 @@
 					<el-space :fill="true" :size="20" wrap>
 						<div class="flex-center">
 							<ElImage
-								class="h-50px"
+								class="h-50px w-50px"
 								:src="logoUrl"
 								fill="scale-down"
 							/>
