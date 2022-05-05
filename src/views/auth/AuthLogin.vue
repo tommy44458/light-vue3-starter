@@ -24,13 +24,10 @@
 								/>
 							</ElFormItem>
 							<ElFormItem>
-								<ElButton
-									type="primary"
-									@click="submitForm(reactiveForm)"
-								>
+								<ElButton type="primary" @click="submitForm()">
 									Login
 								</ElButton>
-								<ElButton @click="resetForm(reactiveForm)">
+								<ElButton @click="resetForm()">
 									Reset
 								</ElButton>
 							</ElFormItem>
@@ -60,7 +57,7 @@ const submitForm = async () => {
 	const currentAccount = authStore.getCurrentAccount()
 
 	if (currentAccount != null) {
-		ElMessage.success(`Wellcome, ${currentAccount}.`)
+		ElMessage.success(`Welcome, ${currentAccount}.`)
 		router.push('/console/device')
 	} else {
 		ElMessage.error('Oops, your account or password are wrong.')

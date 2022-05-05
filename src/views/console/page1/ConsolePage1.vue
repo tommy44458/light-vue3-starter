@@ -1,5 +1,5 @@
 <template>
-	UI Device
+	<h1>Page1</h1>
 	<ElRow :gutter="20" class="mt-4">
 		<ElCol :span="6"><div class="grid-content bg-purple-dark" /></ElCol>
 		<ElCol :span="6"><div class="grid-content bg-purple" /></ElCol>
@@ -41,14 +41,16 @@ import { useMQTT } from 'mqtt-vue-hook'
 const mqttHook = useMQTT()
 
 onMounted(() => {
-	mqttHook.subscribe(['+/data_server/system_resource'], 1)
+	mqttHook.subscribe(['tommy44458/vue3/starter'], 1)
 	mqttHook.registerEvent(
-		'+/data_server/system_resource',
+		'tommy44458/vue3/starter',
 		(topic: string, message: string) => {
-			console.log('device', message.toString(), topic)
+			const mesJson = JSON.parse(message.toString())
+			console.log(mesJson, topic)
+
 			ElNotification({
-				title: 'System Resource',
-				message: message.toString(),
+				title: mesJson.title,
+				message: mesJson.message,
 				type: 'info',
 			})
 		},
@@ -56,8 +58,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	mqttHook.unRegisterEvent('+/data_server/system_resource')
-	mqttHook.unSubscribe('+/data_server/system_resource')
+	mqttHook.unRegisterEvent('tommy44458/vue3/starter')
+	mqttHook.unSubscribe('tommy44458/vue3/starter')
 })
 </script>
 

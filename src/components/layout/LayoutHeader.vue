@@ -10,7 +10,7 @@
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
 					<div @click="router.push('/')" class="cursor-pointer">
-						<SvgIcon name="logo" class="logo" />
+						<h1>TOMMY VUE3 STARTER</h1>
 					</div>
 				</ElSpace>
 			</div>
@@ -19,11 +19,7 @@
 			<div class="flex-center justify-end">
 				<ElSpace wrap :size="0">
 					<SvgIcon name="bell" class="bell" w:m="r-28px" />
-					<SvgIcon
-						name="user_solid"
-						class="user-solid"
-						w:m="r-32px"
-					/>
+					<SvgIcon name="user" class="user-solid" w:m="r-32px" />
 					<ElButton size="small" @click="logout()"> Logout </ElButton>
 				</ElSpace>
 			</div>
@@ -59,12 +55,12 @@ const logout = () => {
     height 24px
 
 .bell
-    width 24px
-    height 24px
+    width 20px
+    height 20px
     color #606666
 
 .user-solid
-    width 24px
-    height 24px
+    width 20px
+    height 20px
     color #606666
 </style>

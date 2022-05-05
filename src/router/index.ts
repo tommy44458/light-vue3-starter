@@ -5,14 +5,14 @@ import PageNotFound from '@/views/PageNotFound.vue'
 import ConsoleLayout from '@/views/console/ConsoleLayout.vue'
 import AuthLayout from '@/views/auth/AuthLayout.vue'
 
-const routeConfiguras: RouteRecordRaw[] = []
+const routeConfigures: RouteRecordRaw[] = []
 
 // default route
-const defaultRouteConfiguras: RouteRecordRaw[] = [
+const defaultRouteConfigures: RouteRecordRaw[] = [
     {
         name: 'console',
         path: '/console/:pathMatch(.*)*',
-        redirect: '/console/device',
+        redirect: '/console/page1',
         component: ConsoleLayout,
         children: consoleRoutesArray,
     },
@@ -37,7 +37,7 @@ const defaultRouteConfiguras: RouteRecordRaw[] = [
 
 const router = createRouter({
     history: createWebHistory(process.env.VITE_BASE_URL),
-    routes: routeConfiguras.concat(defaultRouteConfiguras),
+    routes: routeConfigures.concat(defaultRouteConfigures),
 })
 
 export default router

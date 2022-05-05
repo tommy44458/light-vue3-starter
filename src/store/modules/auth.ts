@@ -19,7 +19,7 @@ export const auth = defineStore('auth', {
     getters: {
     },
     actions: {
-        login(payload: { account: string, password: string }) {
+        async login(payload: { account: string, password: string }) {
             const storage = useStorage()
             if (payload.account === this.fakeAccount.account) {
                 if (payload.password === this.fakeAccount.password) {

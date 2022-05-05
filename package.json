@@ -1,13 +1,13 @@
 {
-  "name": "biopro-hub-ui",
+  "name": "vue3-vite-pinia-mqtt-eslint-stylelint-starter",
   "private": true,
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/bioproscientific/front-end/biopro-hub-ui.git"
+    "url": "https://github.com/tommy44458/vue3-vite-pinia-mqtt-eslint-stylelint-starter.git"
   },
   "bugs": {
-    "url": "https://gitlab.com/bioproscientific/front-end/biopro-hub-ui/-/issues"
+    "url": "https://github.com/tommy44458/vue3-vite-pinia-mqtt-eslint-stylelint-starter/-/issues"
   },
   "scripts": {
     "dev": "vite",
@@ -28,7 +28,7 @@
     "element-plus": "^2.1.9",
     "mitt": "^3.0.0",
     "mqtt": "^4.3.7",
-    "mqtt-vue-hook": "^1.1.10",
+    "mqtt-vue-hook": "^1.1.11",
     "pinia": "^2.0.11",
     "postcss": "^8.4.12",
     "postcss-html": "^1.4.1",
