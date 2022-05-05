@@ -11,7 +11,7 @@
 	<img src="https://img.shields.io/badge/-ElementPlus-blue?logo=ElementPlus&logoColor=white">
 <p> 
 
-This template should help get you started developing with Vue 3, Pinia, WindiCSS, Mqtt and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs.
+This template should help get you started developing with Vue3, Pinia, WindiCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs.
 
 ![image](https://github.com/tommy44458/vue3-vite-pinia-windi-mqtt-starter/blob/main/src/assets/demo_page1.png)
 
