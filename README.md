@@ -1,4 +1,15 @@
-# A vue3 starter admin template by Vue3 + Vite + TypeScript + Pinia + WindiCSS + Mqtt + ESlint(Airbnb)
+# A LIGHT Vue3 Starter Admin Template.
+
+<p align="center">  
+    <img src="https://img.shields.io/badge/-Vue3-34495e?logo=vue.j" />
+    <img src="https://img.shields.io/badge/-Vite2.7-646cff?logo=vite&logoColor=white" />
+    <img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white" />
+    <img src="https://img.shields.io/badge/-Pinia-yellow?logo=picpay&logoColor=white" />
+	<img src="https://img.shields.io/badge/-Windicss-blue?logo=Windicss&logoColor=white">
+    <img src="https://img.shields.io/badge/-ESLint-4b32c3?logo=eslint&logoColor=white" />
+    <img src="https://img.shields.io/badge/-Prettier-ef9421?logo=Prettier&logoColor=white">
+	<img src="https://img.shields.io/badge/-ElementPlus-blue?logo=ElementPlus&logoColor=white">
+<p> 
 
 This template should help get you started developing with Vue 3, Pinia, WindiCSS, Mqtt and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs.
 
@@ -11,6 +22,30 @@ This template should help get you started developing with Vue 3, Pinia, WindiCSS
 Account: tommy
 Password: tommy
 ```
+
+## This starter template includes:
+
+-   [Vue 3](https://vuejs.org/guide/introduction.html)
+-   [Vite](https://vitejs.dev/guide/)
+-   [Pinia](https://pinia.vuejs.org/)
+-   [WindiCSS](https://windicss.org/)
+-   [Vue Router](https://github.com/vuejs/router)
+-   [ElementPlus UI](https://element-plus.org/en-US/)
+-   [Stylus](https://github.com/stylus/stylus)
+-   [Stylelint](https://github.com/stylelint/stylelint)
+-   [Eslint](https://eslint.org/)
+-   [eslint-config-airbnb-typescript](https://github.com/iamturns/eslint-config-airbnb-typescript)
+-   [mqtt-vue-hook](https://github.com/tommy44458/mqtt-vue-hook)
+
+## Collaboration-code specification
+Many tech teams generally use [Airbnb](https://github.com/airbnb/javascript) to constrain code specifications at present.
+- Through `pre-commit` to implement  lint check,unit test,code formatting,etc.。 
+- Combined with the VsCode（formatting automatically when saving：editor.formatOnSave: true）
+- Combined with the Git hooks（execute before commit：pre-commit => yarn lint）
+- IDE configuration（`.editorconfig`）,ESLint configuration（`.eslintrc.js` 和 `.eslintignore`）,StyleLint configuration（`.stylelintrc`, `.stylelintignore`）,for details, please refer to the corresponding configuration file。  
+
+Close code specification 
+add `.eslintignore`  and  `.stylelintignore`  to `src/`  directory respectively to ignore 
 
 ## Recommended IDE Setup
 
@@ -25,22 +60,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
 
-## This starter template includes:
-
--   [Vue 3](https://vuejs.org/guide/introduction.html)
--   [Vite](https://vitejs.dev/guide/)
--   [Pinia](https://pinia.vuejs.org/)
--   [WindiCSS](https://windicss.org/)
--   [Vue Router](https://github.com/vuejs/router)
--   [ElementPlus UI](https://element-plus.org/en-US/)
--   [Stylus](https://github.com/stylus/stylus)
--   [Airbnb](https://github.com/stylelint/stylelint)
--   [Stylelint](https://github.com/stylelint/stylelint)
--   [Eslint](https://eslint.org/)
--   [eslint-config-airbnb-typescript](https://github.com/iamturns/eslint-config-airbnb-typescript)
--   [mqtt-vue-hook](https://github.com/tommy44458/mqtt-vue-hook)
-
-### Getting Started
+## Getting Started
 
 #### Install
 
