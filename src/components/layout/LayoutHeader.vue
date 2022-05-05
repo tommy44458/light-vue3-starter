@@ -10,7 +10,7 @@
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
 					<div @click="router.push('/')" class="cursor-pointer">
-						<h1>TOMMY STARTER</h1>
+						<h1>TOMMY</h1>
 					</div>
 				</ElSpace>
 			</div>
@@ -18,8 +18,8 @@
 		<ElCol :span="12">
 			<div class="flex-center justify-end">
 				<ElSpace wrap :size="0">
-					<SvgIcon name="bell" class="bell" w:m="r-28px" />
-					<SvgIcon name="user" class="user-solid" w:m="r-32px" />
+					<SvgIcon name="bell" class="bell" w:m="r-16px" />
+					<SvgIcon name="user" class="user-solid" w:m="r-16px" />
 					<ElButton size="small" @click="logout()"> Logout </ElButton>
 				</ElSpace>
 			</div>
