@@ -2,7 +2,9 @@
 
 This template should help get you started developing with Vue 3, Pinia, WindiCSS, Mqtt and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs.
 
-Check out the [Online DEMO](https://vue3-vite-pinia-windi-mqtt-starter.vercel.app/).
+![image](https://github.com/tommy44458/vue3-vite-pinia-windi-mqtt-starter/blob/main/src/assets/demo_page1.png)
+
+### Check out the [Online DEMO](https://vue3-vite-pinia-windi-mqtt-starter.vercel.app/).
 
 ```sh
 // login info
