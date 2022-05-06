@@ -11,7 +11,7 @@
 	<img src="https://img.shields.io/badge/-ElementPlus-blue?logo=ElementPlus&logoColor=white">
 <p> 
 
-This template should help get you started developing with Vue3, Pinia, WindiCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs.
+This template should help get you started developing with Vue3, Pinia, WindiCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs. Also, this template also supports MQTT so that it can easily become a control system for IoT devices.
 
 ![image](https://github.com/tommy44458/vue3-vite-pinia-windi-mqtt-starter/blob/main/src/assets/demo_page1.png)
 
@@ -51,14 +51,78 @@ add `.eslintignore`  and  `.stylelintignore`  to `src/`  directory respectively 
 
 -   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
-## Type Support For `.vue` Imports in TS
+## Support MQTT client
+	
+#### src/main.ts
+``` ts
+import { createApp } from 'vue'
+import App from './App.vue'
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+const app = createApp(App)
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+// protocol = 'wss', 'ws', 'mqtt', ...
+// host = ip or domain
+// port = 8083, 1883, ...
+import mqttVueHook from 'mqtt-vue-hook'
+// app.use(mqttVueHook, options)
+app.use(mqttVueHook, `${protocol}://${host}:${port}`, {
+  clean: false,
+  keepalive: 60,
+  clientId: `mqtt_client_${Math.random().toString(16).substring(2, 10)}`,
+  connectTimeout: 4000,
+})
+```
+	
+#### views/console/ConsolePage1.vue
+	
+``` vue
+<script setup lang="ts">
+import { useMQTT } from 'mqtt-vue-hook'
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+const mqttHook = useMQTT()
+
+const form = reactive({
+	// ...data
+})
+
+const mqttSubscribe = () => {
+	mqttHook.subscribe(['+/vue3/starter/console/page1'], 1)
+
+	// if receive mes from '+/vue3/starter/console/page1' before excute callback function.
+	mqttHook.registerEvent(
+		'+/vue3/starter/console/page1',
+		// callback funtion
+		(topic: string, message: string) => {
+			const mesJson = JSON.parse(message.toString())
+			ElNotification({
+				title: `MQTT TOPIC: ${topic}`,
+				message: mesJson,
+				type: 'info',
+			})
+		},
+		'key',
+	)
+}
+
+const onPublish = () => {
+	mqttHook.publish(
+		'tommy44458/vue3/starter/console/page1',
+		JSON.stringify({
+			// ...form.data
+		}),
+	)
+}
+
+onMounted(() => {
+	mqttSubscribe()
+})
+
+onUnmounted(() => {
+	// remove Event by topic and key
+	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page1', 'key')
+	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page1')
+})
+```
 
 ## Getting Started
 
