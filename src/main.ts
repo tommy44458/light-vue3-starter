@@ -16,10 +16,12 @@ const app = createApp(App)
 
 // eslint-disable-next-line no-restricted-globals
 let mqttHost = location.href.split('/')[2]
+let mqttProtocol = 'ws'
 if (process.env.VITE_MQTT_HOST !== 'localhost' && process.env.VITE_MQTT_HOST != null) {
     mqttHost = process.env.VITE_MQTT_HOST
+    mqttProtocol = process.env.VITE_MQTT_PROTOCOL
 }
-app.use(mqttVueHook, `ws://${mqttHost}:${parseInt(process.env.VITE_MQTT_PORT, 10)}`, {
+app.use(mqttVueHook, `${mqttProtocol}://${mqttHost}:${parseInt(process.env.VITE_MQTT_PORT, 10)}`, {
     clean: false,
     keepalive: 60,
     clientId: `mqtt_client_${Math.random().toString(16).substring(2, 10)}`,
