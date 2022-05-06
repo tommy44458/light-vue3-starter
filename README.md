@@ -119,8 +119,8 @@ onMounted(() => {
 
 onUnmounted(() => {
 	// remove Event by topic and key
-	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page1', 'key')
-	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page1')
+	mqttHook.unRegisterEvent('+/vue3/starter/console/page1', 'key')
+	mqttHook.unSubscribe('+/vue3/starter/console/page1')
 })
 ```
 
