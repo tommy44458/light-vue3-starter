@@ -10,7 +10,7 @@
 						<SvgIcon name="side_menu" class="side_menu" />
 					</div>
 					<div @click="router.push('/')" class="cursor-pointer">
-						<h1>TOMMY</h1>
+						<h1>CONSOLE</h1>
 					</div>
 				</ElSpace>
 			</div>

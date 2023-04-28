@@ -85,7 +85,11 @@ export const auth = defineStore('auth', {
         clearLoginInfo() {
             storage.setStorageSync('account', null)
         },
-        getCurrentAccount: (): string => storage.getStorageSync('currentAccount'),
+        getCurrentAccount() {
+            const account = storage.getStorageSync('currentAccount')
+            if (account != null) this.mqttConnect()
+            return account
+        },
     },
 })
 

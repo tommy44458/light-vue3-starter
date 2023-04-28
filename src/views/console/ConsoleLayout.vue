@@ -17,7 +17,7 @@
 				</ElAside>
 				<ElContainer v-loading="layoutStore.isRouteChanging">
 					<ElMain
-						class="!-p-0 !bg-white"
+						class="!-p-0 !bg-white !p-16px"
 						:style="useViewHeight(80)"
 					>
 						<RouterView />
@@ -40,7 +40,6 @@ import LayoutMenuMobile from '@/components/layout/LayoutMenuMobile.vue'
 const layoutStore = useLayoutStore()
 
 const useViewHeight = (offset: number) => {
-	// 36 = home tab height
 	let cls = ''
 	cls += `height: calc(100vh - ${(offset)}px);`
 	cls += ` height: calc(var(--vh, 1vh) * 100 - ${(offset)}px);`
