@@ -36,34 +36,12 @@
 </template>
 
 <script setup lang="ts">
-import { useMQTT } from 'mqtt-vue-hook'
-
-const mqttHook = useMQTT()
-
-const mqttSubscribe = () => {
-	mqttHook.subscribe(['tommy44458/vue3/starter/console/page2'], 1)
-	mqttHook.registerEvent(
-		'tommy44458/vue3/starter/console/page2',
-		(topic: string, message: string) => {
-			const mesJson = JSON.parse(message.toString())
-			console.log(mesJson, topic)
-
-			ElNotification({
-				title: `MQTT TOPIC: ${topic}`,
-				message: mesJson,
-				type: 'info',
-			})
-		},
-	)
-}
-
 onMounted(() => {
-	mqttSubscribe()
+	// a
 })
 
 onUnmounted(() => {
-	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page2')
-	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page2')
+	// a
 })
 </script>
 

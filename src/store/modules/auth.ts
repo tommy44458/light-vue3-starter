@@ -2,8 +2,10 @@ import { defineStore } from 'pinia'
 import piniaInstance from '@/store'
 import { useStorage } from 'vue3-storage'
 import { useMQTT } from 'mqtt-vue-hook'
+import { useTaskStore } from '@/store/modules/task'
 
 const mqttHook = useMQTT()
+const taskStore = useTaskStore()
 const storage = useStorage()
 
 interface AuthState {
@@ -71,6 +73,30 @@ export const auth = defineStore('auth', {
                     path: '/mqtt',
                     connectTimeout: 4000,
                 })
+
+                mqttHook.subscribe(['tommy44458/vue3/starter/console/register_task'], 1)
+
+                mqttHook.registerEvent(
+                    'tommy44458/vue3/starter/console/register_task',
+                    (_topic: string, message: string) => {
+                        const mesJson = JSON.parse(message.toString())
+
+                        // eslint-disable-next-line prefer-destructuring
+                        taskStore.addTask({
+                            name: mesJson.name,
+                            date: mesJson.date.split('T')[0],
+                            description: mesJson.desc,
+                            done: mesJson.done,
+                        })
+
+                        ElNotification({
+                            title: `register task: ${mesJson.name}`,
+                            message: mesJson,
+                            type: 'success',
+                        })
+                    },
+                    'login',
+                )
             }
         },
         mqttDisconnect() {
@@ -80,6 +106,8 @@ export const auth = defineStore('auth', {
         },
         logout() {
             storage.setStorageSync('currentAccount', null)
+            mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/register_task', 'login')
+            mqttHook.unSubscribe('tommy44458/vue3/starter/console/register_task')
             this.mqttDisconnect()
         },
         clearLoginInfo() {

@@ -1,12 +1,12 @@
 <template>
 	<div class="mb-5 flex-center">
-		<h1>Publish data to MQTT broker</h1>
+		<h1>Register Task (Publish data to MQTT broker)</h1>
 	</div>
 	<ElForm :model="form" label-width="120px">
-		<ElFormItem label="Activity name">
+		<ElFormItem label="Task name">
 			<ElInput v-model="form.name" />
 		</ElFormItem>
-		<ElFormItem label="Activity zone">
+		<!-- <ElFormItem label="Activity zone">
 			<ElSelect
 				v-model="form.region"
 				placeholder="please select your zone"
@@ -14,45 +14,35 @@
 				<ElOption label="Zone one" value="shanghai" />
 				<ElOption label="Zone two" value="beijing" />
 			</ElSelect>
-		</ElFormItem>
-		<ElFormItem label="Activity time">
+		</ElFormItem> -->
+		<ElFormItem label="Task time">
 			<ElCol :span="11">
 				<ElDatePicker
-					v-model="form.date1"
+					v-model="form.date"
 					type="date"
 					placeholder="Pick a date"
 					style="width: 100%"
 				/>
 			</ElCol>
-			<ElCol :span="2" class="text-center">
-				<span class="text-gray-500">-</span>
-			</ElCol>
-			<ElCol :span="11">
-				<ElTimePicker
-					v-model="form.date2"
-					placeholder="Pick a time"
-					style="width: 100%"
-				/>
-			</ElCol>
 		</ElFormItem>
-		<ElFormItem label="Instant delivery">
-			<ElSwitch v-model="form.delivery" />
+		<ElFormItem label="Task status">
+			<ElSwitch v-model="form.done" />
 		</ElFormItem>
-		<ElFormItem label="Activity type">
+		<!-- <ElFormItem label="Activity type">
 			<ElCheckboxGroup v-model="form.type">
 				<ElCheckbox label="Online activities" name="type" />
 				<ElCheckbox label="Promotion activities" name="type" />
 				<ElCheckbox label="Offline activities" name="type" />
 				<ElCheckbox label="Simple brand exposure" name="type" />
 			</ElCheckboxGroup>
-		</ElFormItem>
-		<ElFormItem label="Resources">
+		</ElFormItem> -->
+		<!-- <ElFormItem label="Resources">
 			<ElRadioGroup v-model="form.resource">
 				<ElRadio label="Sponsor" />
 				<ElRadio label="Venue" />
 			</ElRadioGroup>
-		</ElFormItem>
-		<ElFormItem label="Activity form">
+		</ElFormItem> -->
+		<ElFormItem label="Task Description">
 			<ElInput v-model="form.desc" type="textarea" />
 		</ElFormItem>
 		<ElFormItem>
@@ -68,55 +58,29 @@ const mqttHook = useMQTT()
 
 const form = reactive({
 	name: '',
-	region: '',
-	date1: '',
-	date2: '',
-	delivery: false,
-	type: [],
-	resource: '',
+	date: '',
+	done: false,
 	desc: '',
 })
 
-const mqttSubscribe = () => {
-	mqttHook.subscribe(['tommy44458/vue3/starter/console/page1'], 1)
-	mqttHook.registerEvent(
-		'tommy44458/vue3/starter/console/page1',
-		(topic: string, message: string) => {
-			const mesJson = JSON.parse(message.toString())
-			console.log(mesJson, topic)
-
-			ElNotification({
-				title: `MQTT TOPIC: ${topic}`,
-				message: mesJson,
-				type: 'info',
-			})
-		},
-	)
-}
-
 const onPublish = () => {
 	mqttHook.publish(
-		'tommy44458/vue3/starter/console/page1',
+		'tommy44458/vue3/starter/console/register_task',
 		JSON.stringify({
 			name: form.name,
-			region: form.region,
-			date1: form.date1,
-			date2: form.date2,
-			delivery: form.delivery,
-			type: form.type,
-			resource: form.resource,
+			date: form.date,
+			done: form.done,
 			desc: form.desc,
 		}),
 	)
 }
 
 onMounted(() => {
-	mqttSubscribe()
+	// a
 })
 
 onUnmounted(() => {
-	mqttHook.unRegisterEvent('tommy44458/vue3/starter/console/page1')
-	mqttHook.unSubscribe('tommy44458/vue3/starter/console/page1')
+	// a
 })
 </script>
 
