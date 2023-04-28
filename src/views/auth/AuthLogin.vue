@@ -1,70 +1,149 @@
 <template>
-	<ElRow :gutter="20" class="h-screen">
-		<ElCol :span="6"> </ElCol>
-		<ElCol :span="12">
-			<template class="h-full flex-center">
-				<ElCard class="min-w-400px p-10px">
-					<el-space :fill="true" :size="20" wrap>
-						<div class="flex-center">
-							<ElImage
-								class="h-50px w-50px"
-								:src="logoUrl"
-								fill="scale-down"
-							/>
-						</div>
-						<ElForm :model="reactiveForm" label-width="100px">
-							<ElFormItem label="Account">
-								<ElInput v-model="reactiveForm.account" />
-							</ElFormItem>
-							<ElFormItem label="Password" prop="pass">
-								<ElInput
-									v-model="reactiveForm.password"
-									type="password"
-									autocomplete="off"
-								/>
-							</ElFormItem>
+	<div
+		v-loading="isLogging"
+		class="main-container overflow-hidden"
+	>
+		<ElContainer class="bg-fill-color">
+			<ElContainer>
+				<div
+					class="h-full flex flex-col justify-center items-center pb-110px"
+				>
+					<ElImage
+						class="h-100px mb-36px"
+						:src="logoUrl"
+						fill="scale-down"
+					/>
+					<ElCard
+						class="w-40vw max-w-480px px-8px"
+						:class="{
+							'!w-full': layoutStore.isMobile,
+						}"
+					>
+						<p class="text-20px leading-28px font-700" w:mb="12px">
+							Log in
+						</p>
+						<p
+							class="text-color-secondary text-12px leading-20px"
+							w:mb="12px"
+						>
+							We give you a wonderful experience of wireless
+							experiment.
+						</p>
+						<ElForm :model="authStore.userLogin">
+							<div w:mb="12px">
+								<p class="text-14px font-500" w:mb="4px">
+									Account
+								</p>
+								<ElFormItem>
+									<ElInput
+										v-model="authStore.userLogin.account"
+									/>
+								</ElFormItem>
+							</div>
+							<div w:mb="16px">
+								<p class="text-14px font-500" w:mb="4px">
+									Password
+								</p>
+								<ElFormItem prop="pass">
+									<ElInput
+										v-model="authStore.userLogin.password"
+										type="password"
+										autocomplete="off"
+										show-password
+									/>
+								</ElFormItem>
+							</div>
+							<ElRow w:mb="16px">
+								<ElCol :span="12">
+									<div class="flex-center justify-start">
+										<ElCheckbox
+											v-model="authStore.isRememberMe"
+											size="small"
+											label="Remember me"
+											@change="
+												authStore.rememberMeOrNot()
+											"
+										/>
+									</div>
+								</ElCol>
+								<ElCol :span="12">
+									<div class="flex-center justify-end">
+										<ElButton
+											type="primary"
+											class="!p-0"
+											size="small"
+											link
+										>
+											Forgot password
+										</ElButton>
+									</div>
+								</ElCol>
+							</ElRow>
 							<ElFormItem>
-								<ElButton type="primary" @click="submitForm()">
-									Login
-								</ElButton>
-								<ElButton @click="resetForm()">
-									Reset
+								<ElButton
+									type="primary"
+									class="w-full"
+									@click="submitForm()"
+								>
+									Log in
 								</ElButton>
 							</ElFormItem>
 						</ElForm>
-					</el-space>
-				</ElCard>
-			</template>
-		</ElCol>
-		<ElCol :span="6" />
-	</ElRow>
+					</ElCard>
+				</div>
+				<ElFooter class="!h-32px">
+					<LayoutFooter />
+				</ElFooter>
+			</ElContainer>
+		</ElContainer>
+	</div>
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '@/store/modules/auth'
+import { useLayoutStore } from '@/store/modules/layout'
 import logoUrl from '@/assets/logo.png'
 
 const router = useRouter()
 const authStore = useAuthStore()
+const layoutStore = useLayoutStore()
 
-const reactiveForm = reactive({
-	account: '',
-	password: '',
-})
+const isLogging = ref(false)
 
 const submitForm = async () => {
-	await authStore.login(reactiveForm)
-	const currentAccount = authStore.getCurrentAccount()
-
-	if (currentAccount != null) {
-		ElMessage.success(`Welcome, ${currentAccount}.`)
+	const interval = setTimeout(() => {
+		authStore.clearLoginInfo()
+		isLogging.value = false
+		ElNotification({
+			message: 'Login failed, please refresh page and try again.',
+			position: 'bottom-right',
+			type: 'error',
+		})
+	}, 10000)
+	if (authStore.login(authStore.userLogin)) {
+		clearInterval(interval)
 		router.push('/console/page1')
-	} else {
-		ElMessage.error('Oops, your account or password are wrong.')
+	}
+	isLogging.value = false
+}
+
+const keypressEvent = async (e: KeyboardEvent) => {
+	if (e.key === 'Enter') {
+		isLogging.value = true
+		await submitForm()
 	}
 }
-const resetForm = () => {
-	reactiveForm.account = ''
-	reactiveForm.password = ''
-}
+
+onMounted(async () => {
+	if (authStore.getCurrentAccount()) {
+		router.push('/console/page1')
+	} else {
+		authStore.initLoginForm()
+	}
+	document.addEventListener('keypress', keypressEvent)
+})
+
+onUnmounted(() => {
+	document.removeEventListener('keypress', keypressEvent)
+})
 </script>

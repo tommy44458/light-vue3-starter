@@ -1,58 +1,52 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowUnreachableCode": false,
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "out",
-    "declaration": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "isolatedModules": true,
-    "incremental": true,
-    "baseUrl": ".",
-    "types": ["element-plus/global"],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ],
-    }
+      "target": "es2017",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "noUncheckedIndexedAccess": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "allowUnreachableCode": false,
+      "noFallthroughCasesInSwitch": true,
+      "outDir": "out",
+      "declaration": true,
+      "sourceMap": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "allowJs": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "jsx": "preserve",
+      "noEmit": true,
+      "isolatedModules": true,
+      "incremental": true,
+      "baseUrl": ".",
+      "types": ["element-plus/global"],
+      "paths": {
+          "@/*": ["./src/*"],
+          "@/public/*": ["./public/*"]
+      }
   },
   "exclude": [
-    "node_modules",
-    "./node_modules",
-    "./out/**/*",
-    "./node_modules/**/*",
+      "node_modules",
+      "./node_modules",
+      "./out/**/*",
+      "./node_modules/**/*"
   ],
   "include": [
-    "auto-imports.d.ts",
-    "src/*",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.vue",
-    "**/*.d.ts"
+      "src/common/sortable/sortable.js",
+      "auto-imports.d.ts",
+      "src/*",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.vue",
+      "**/*.d.ts"
   ]
 }

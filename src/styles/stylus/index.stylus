@@ -1,0 +1,120 @@
+.flex-center
+    display: flex
+    align-items: center
+
+.main-container
+    position absolute
+    left 0
+    right 0
+    top 0
+    bottom 0
+    width 100%
+    height 100%
+    background #eee
+    display flex
+    flex-direction column
+
+.circle-class
+    display flex
+    justify-content center
+    align-items center
+    border-radius 50%
+
+.device-list-item
+    box-sizing border-box
+    border 1px solid #E3ECED
+    border-radius 4px
+    background-color white
+    height 76px
+
+.page-card-border
+    border 1px solid --var(--el-color-primary-background)
+    border-radius 4px
+
+.icon-button
+    padding 8px 15px
+    height 32px
+    border-width 1px
+    border-radius 4px
+    cursor pointer
+
+    &-text
+        font-size 0.875rem
+        line-height 1
+        color var(--el-text-color-primary)
+
+.icon-button:hover
+    background-color var(--el-color-primary-light-9)
+
+.higher-layer
+    position absolute
+    z-index 1000
+
+.color-danger
+    color var(--el-color-danger)
+
+.color-warning
+    color var(--el-color-warning)
+
+.color-info
+    color var(--el-color-info)
+
+.color-success
+    color var(--el-color-success)
+
+.color-success-dark
+    color #5DB034
+
+.color-primary
+    color var(--el-color-primary)
+
+.color-primary-dark
+    color var(--el-color-primary-dark)
+
+.color-danger-dark-2
+    color var(--el-color-danger-dark-2)
+
+.text-color-primary
+    color var(--el-text-color-primary)
+
+.text-color-regular
+    color var(--el-text-color-regular)
+
+.text-color-secondary
+    color: var(--el-text-color-secondary)
+
+.text-color-placeholder
+    color var(--el-text-color-placeholder)
+
+.text-color-disable
+    color var(--el-text-color-disable)
+
+.text-color-danger
+    color var(--el-text-color-danger)
+
+.border-color-light
+    color var(--el-border-color-light)
+
+.bg-fill-color-lighter
+    background-color var(--el-fill-color-lighter) !important
+
+.bg-fill-color
+    background-color var(--el-fill-color) !important
+
+.bg-color-danger-light-9
+    background-color var(--el-color-danger-light-9) !important
+
+.bg-color-disabled
+    background-color var(--el-disabled-bg-color) !important
+
+.bg-color-info-light-9
+    background-color var(--el-color-info-light-9) !important
+
+.bg-color-success
+    background-color var(--el-color-success) !important
+
+.bg-color-primary
+    background-color var(--el-color-primary) !important
+
+.bg-color-primary-light-9
+    background-color var(--el-color-primary-light-9) !important

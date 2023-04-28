@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import WindiCSS from 'vite-plugin-windicss'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
@@ -16,6 +17,13 @@ export default ({ mode, command }: { mode: string, command: string }) => {
         base: '/',
         define: {
             'process.env': ENV,
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: '@use "@/styles/scss/element/index.scss" as *;',
+                },
+            },
         },
         plugins: [
             vue(),
@@ -38,11 +46,9 @@ export default ({ mode, command }: { mode: string, command: string }) => {
                         '@vueuse/core': [
                             // named imports
                             'useMouse', // import { useMouse } from '@vueuse/core',
-                            // alias
-                            ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+                            'useWindowSize', // import { useWindowSize } from '@vueuse/core',
                         ],
                         axios: [
-                            // default imports
                             ['default', 'axios'], // import { default as axios } from 'axios',
                         ],
                     },
@@ -58,16 +64,28 @@ export default ({ mode, command }: { mode: string, command: string }) => {
 
                 // custom resolvers
                 // see https://github.com/antfu/unplugin-auto-import/pull/23/
-                resolvers: [ElementPlusResolver()],
+                resolvers: [
+                    ElementPlusResolver({
+                        // for import styles/scss/element/index.scss to change system color
+                        importStyle: 'sass',
+                    }),
+                ],
             }),
             Components({
-                resolvers: [ElementPlusResolver({})],
+                resolvers: [
+                    ElementPlusResolver({
+                        importStyle: 'sass',
+                    }),
+                ],
             }),
             createSvgIconsPlugin({
                 // Specify the icon folder to be cached
                 iconDirs: [resolve(process.cwd(), 'src/assets/icon')],
                 // Specify symbolId format
                 symbolId: 'icon-[dir]-[name]',
+            }),
+            ElementPlus({
+                useSource: true,
             }),
         ],
         resolve: {
@@ -85,7 +103,18 @@ export default ({ mode, command }: { mode: string, command: string }) => {
                     rewrite: path => path.replace(/\/proxy/, ''),
                 },
             },
+            // reload mqtt-vue-hook
+            watch: {
+                usePolling: true, // For Docker.
+                ignored: ['!**/node_modules/mqtt-vue-hook/**'],
+            },
+            // reload mqtt-vue-hook
         },
+        // reload mqtt-vue-hook
+        optimizeDeps: {
+            exclude: ['mqtt-vue-hook'],
+        },
+        // reload mqtt-vue-hook
         build: {
             outDir: mode === 'production' ? 'dist' : `dist-${mode}`,
             sourcemap: ENV.VITE_BUILD_SOURCEMAP === TRUE,
@@ -96,12 +125,21 @@ export default ({ mode, command }: { mode: string, command: string }) => {
                     drop_debugger: ENV.VITE_BUILD_DROP_DEBUGGER === TRUE, // disable debug in prod.env
                 },
             },
-        },
-        css: {
-            // preload scss
-            preprocessorOptions: {
-                scss: {
-                    additionalData: '@use "src/assets/scss/element/index.scss" as *;',
+            rollupOptions: {
+                output: {
+                    assetFileNames: ({ name }) => {
+                        if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? '')) {
+                            return 'assets/images/[name]-[hash][extname]'
+                        }
+
+                        if (/\.css$/.test(name ?? '')) {
+                            return 'assets/css/[name]-[hash][extname]'
+                        }
+
+                        // default value
+                        // ref: https://rollupjs.org/guide/en/#outputassetfilenames
+                        return 'assets/[name]-[hash][extname]'
+                    },
                 },
             },
         },

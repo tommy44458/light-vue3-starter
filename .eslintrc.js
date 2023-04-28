@@ -1,12 +1,12 @@
-/* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = {
     root: true,
     env: {
         browser: true,
         node: true,
         'vue/setup-compiler-macros': true,
+    },
+    globals: {
+        expect: true,
     },
     extends: [
         'prettier',
@@ -24,10 +24,12 @@ module.exports = {
         semi: 'off',
         quotes: ['warn', 'single'],
         indent: ['warn', 'tab'],
+        'import/prefer-default-export': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         'max-len': [
             'warn',
             {
-                code: 120,
+                code: 160,
                 ignoreComments: true,
                 ignoreTrailingComments: true,
                 ignoreUrls: true,
@@ -40,6 +42,7 @@ module.exports = {
         'no-console': 'off',
         'no-tabs': 'off',
         'no-restricted-syntax': 'off',
+        'no-unsafe-optional-chaining': 'off',
         'func-names': 'off',
         'arrow-parens': ['error', 'as-needed'],
         'object-curly-newline': [
@@ -47,7 +50,7 @@ module.exports = {
             {
                 ObjectExpression: { consistent: true, multiline: true },
                 ObjectPattern: { consistent: true, multiline: true },
-                ImportDeclaration: 'never',
+                ImportDeclaration: { consistent: true, multiline: true },
                 ExportDeclaration: { multiline: true, minProperties: 3 },
             },
         ],
@@ -72,7 +75,6 @@ module.exports = {
         },
     },
     globals: {
-        expect: true,
         defineProps: 'readonly',
         defineEmits: 'readonly',
         defineExpose: 'readonly',
@@ -91,6 +93,7 @@ module.exports = {
             },
             rules: {
                 semi: 'off',
+                'no-restricted-globals': 'off',
                 '@typescript-eslint/semi': ['error', 'never'],
                 '@typescript-eslint/indent': ['warn', 4],
                 '@typescript-eslint/no-unused-expressions': 'off',
@@ -102,18 +105,6 @@ module.exports = {
                 'no-restricted-syntax': 'off',
                 'func-names': 'off',
                 'arrow-parens': ['error', 'as-needed'],
-                'object-curly-newline': [
-                    'error',
-                    {
-                        ObjectExpression: { consistent: true, multiline: true },
-                        ObjectPattern: { consistent: true, multiline: true },
-                        ImportDeclaration: 'never',
-                        ExportDeclaration: {
-                            multiline: true,
-                            minProperties: 3,
-                        },
-                    },
-                ],
             },
         },
     ],
