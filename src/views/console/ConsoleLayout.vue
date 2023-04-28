@@ -1,16 +1,31 @@
 <template>
-	<main class="main-container">
+	<main class="overflow-hidden hide-scrollbar">
 		<ElContainer>
 			<ElHeader>
-				<LayoutHeader></LayoutHeader>
+				<LayoutHeader />
 			</ElHeader>
 			<ElContainer>
-				<ElAside :style="{ display: layoutStore.sideMenuDisplayStyle }">
-					<LayoutMenu></LayoutMenu>
+				<ElAside v-if="!layoutStore.isMobile">
+					<LayoutMenu />
 				</ElAside>
-				<ElMain class="!p-16px !-md:p-12px !-sm:p-8px">
-					<RouterView />
-				</ElMain>
+				<ElAside
+					v-if="
+						layoutStore.isMobile && !layoutStore.sideMenu.isCollapse
+					"
+				>
+					<LayoutMenuMobile />
+				</ElAside>
+				<ElContainer v-loading="layoutStore.isRouteChanging">
+					<ElMain
+						class="!-p-0 !bg-white"
+						:style="useViewHeight(80)"
+					>
+						<RouterView />
+					</ElMain>
+					<ElFooter class="bg-white">
+						<LayoutFooter />
+					</ElFooter>
+				</ElContainer>
 			</ElContainer>
 		</ElContainer>
 	</main>
@@ -20,19 +35,31 @@
 import LayoutHeader from '@/components/layout/LayoutHeader.vue'
 import LayoutMenu from '@/components/layout/LayoutMenu.vue'
 import { useLayoutStore } from '@/store/modules/layout'
+import LayoutMenuMobile from '@/components/layout/LayoutMenuMobile.vue'
 
 const layoutStore = useLayoutStore()
+
+const useViewHeight = (offset: number) => {
+	// 36 = home tab height
+	let cls = ''
+	cls += `height: calc(100vh - ${(offset)}px);`
+	cls += ` height: calc(var(--vh, 1vh) * 100 - ${(offset)}px);`
+	return cls
+}
 </script>
 
 <style scoped lang="stylus">
 .el-header
     height 48px
-    position relative
     background-color #fff
     color var(--el-text-color-primary)
-    border 1px solid #E3ECED
+    border-bottom 1px solid #E3ECED
     z-index 2
 
 .el-aside
+    border-right 1px solid #E3ECED
     width unset !important
+
+.el-footer
+    height 32px
 </style>

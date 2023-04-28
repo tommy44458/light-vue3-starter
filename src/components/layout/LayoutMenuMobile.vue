@@ -12,7 +12,13 @@
 				:index="String(item.name)"
 				:route="`/${item.path}`"
 				:class="{ footer: index == consoleRoutesArray.length - 1 }"
-				@click="router.push(item.path)"
+				:disabled="item.path === 'user' || item.path === 'setting'"
+				@click="
+					() => {
+						router.push(item.path)
+						layoutStore.sideMenu.isCollapse = true
+					}
+				"
 			>
 				<ElIcon>
 					<SvgIcon :name="item.meta.icon" />
@@ -37,17 +43,8 @@ const reactiveData = reactive({
 	activeIndex: null,
 })
 
-const onResize = () => {
-	layoutStore.windowResize({
-		width: window.innerWidth,
-		height: window.innerHeight,
-	})
-}
-
 onMounted(() => {
 	reactiveData.activeIndex = router.currentRoute.value.name
-	window.addEventListener('resize', onResize)
-	onResize()
 })
 
 watch(
@@ -66,16 +63,16 @@ const handleClose = (key: string, keyPath: string[]) => {
 </script>
 
 <style scoped lang="stylus">
-.el-menu:not(.el-menu--collapse)
-    width 160px
-
 .side-menu
+    width 100%
+    position fixed
+    z-index 100
     height 100%
     border-right none
     text-align left
 
-    .footer
-        bottom 0
-        width 100%
-        position absolute
+.footer
+    bottom 0
+    width 100%
+    position absolute
 </style>
