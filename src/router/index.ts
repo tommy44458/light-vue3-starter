@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { consoleRoutesArray, authRoutesArray } from '@/router/modules'
 
 import PageNotFound from '@/views/PageNotFound.vue'
@@ -36,7 +36,7 @@ const defaultRouteConfigures: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.VITE_BASE_URL),
+    history: createWebHashHistory(),
     routes: routeConfigures.concat(defaultRouteConfigures),
 })
 
