@@ -122,7 +122,7 @@ const submitForm = async () => {
 	}, 10000)
 	if (authStore.login(authStore.userLogin)) {
 		clearInterval(interval)
-		router.push('/console/page1')
+		router.push('/console/task')
 	}
 	isLogging.value = false
 }
@@ -136,7 +136,7 @@ const keypressEvent = async (e: KeyboardEvent) => {
 
 onMounted(async () => {
 	if (authStore.getCurrentAccount()) {
-		router.push('/console/page1')
+		router.push('/console/task')
 	} else {
 		authStore.initLoginForm()
 	}

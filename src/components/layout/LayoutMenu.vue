@@ -12,6 +12,7 @@
 				:index="String(item.name)"
 				:route="`/${item.path}`"
 				:class="{ footer: index == consoleRoutesArray.length - 1 }"
+                :disabled="item.path === 'setting'"
 				@click="router.push(item.path)"
 			>
 				<ElIcon>

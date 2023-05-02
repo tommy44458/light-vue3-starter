@@ -26,7 +26,7 @@
 			</ElCol>
 		</ElFormItem>
 		<ElFormItem label="Task status">
-			<ElSwitch v-model="form.done" />
+			<ElSwitch v-model="form.checked" />
 		</ElFormItem>
 		<!-- <ElFormItem label="Activity type">
 			<ElCheckboxGroup v-model="form.type">
@@ -59,7 +59,7 @@ const mqttHook = useMQTT()
 const form = reactive({
 	name: '',
 	date: '',
-	done: false,
+	checked: false,
 	desc: '',
 })
 
@@ -69,7 +69,7 @@ const onPublish = () => {
 		JSON.stringify({
 			name: form.name,
 			date: form.date,
-			done: form.done,
+			checked: form.checked,
 			desc: form.desc,
 		}),
 	)

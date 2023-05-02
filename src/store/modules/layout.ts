@@ -60,7 +60,7 @@ export const layout = defineStore('layout', {
                 this.sideMenu.isCollapse = true
                 this.sideMenu.isDisplay = true
             } else if (this.isPC) {
-                this.sideMenu.isCollapse = false
+                this.sideMenu.isCollapse = true
                 this.sideMenu.isDisplay = true
             }
         },

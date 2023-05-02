@@ -26,6 +26,7 @@
     "axios": "^0.25.0",
     "core-js": "^3.22.2",
     "dayjs": "^1.10.7",
+    "echarts": "^5.4.2",
     "element-plus": "^2.2.5",
     "mitt": "^3.0.0",
     "mqtt-vue-hook": "^1.2.17",

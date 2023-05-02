@@ -1,8 +1,8 @@
 <template>
-	<h1>Task Done ({{taskStore.doneTaskListLength}})</h1>
+	<h1>Task Checked ({{taskStore.checkedTaskListLength}})</h1>
 	<div class="h-250px mt-16px mb-16px overflow-scroll">
         <TaskComponent
-            v-for="task in taskStore.doneTaskList" :key="task.id"
+            v-for="task in taskStore.checkedTaskList" :key="task.id"
             :id="task.id"
         />
     </div>
@@ -19,13 +19,19 @@
 import { useTaskStore } from '@/store/modules/task'
 
 const taskStore = useTaskStore()
+const refreshInterval = ref(null)
 
 onMounted(() => {
-	// aa
+	// taskStore.refreshTaskList()
+	// refreshInterval.value = setInterval(() => {
+	// 	taskStore.refreshTaskList()
+	// }, 3000)
 })
 
 onUnmounted(() => {
-	// dd
+	if (refreshInterval.value) {
+		clearInterval(refreshInterval.value)
+	}
 })
 </script>
 

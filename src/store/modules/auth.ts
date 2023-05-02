@@ -85,8 +85,9 @@ export const auth = defineStore('auth', {
                         taskStore.addTask({
                             name: mesJson.name,
                             date: mesJson.date.split('T')[0],
-                            description: mesJson.desc,
-                            done: mesJson.done,
+                            desc: mesJson.desc,
+                            data: [],
+                            checked: mesJson.checked,
                         })
 
                         ElNotification({
