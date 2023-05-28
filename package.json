@@ -29,7 +29,7 @@
     "echarts": "^5.4.2",
     "element-plus": "^2.2.5",
     "mitt": "^3.0.0",
-    "mqtt-vue-hook": "^1.2.17",
+    "mqtt-vue-hook": "^1.2.19",
     "pinia": "^2.0.14",
     "postcss": "^8.4.12",
     "postcss-html": "^1.4.1",
