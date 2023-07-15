@@ -66,6 +66,14 @@ export const auth = defineStore('auth', {
                 mqttHost = process.env.VITE_MQTT_HOST
             }
             if (!mqttHook.isConnected()) {
+                mqttHook.registerEvent(
+                    'on-connect',
+                    () => {
+                        mqttHook.subscribe(['tommy44458/vue3/starter/console/register_task'], 1)
+                    },
+                    'login',
+                )
+
                 mqttHook.connect(
                     `${mqttProtocol}://${mqttHost}:${mqttPort}`,
                     {
@@ -76,8 +84,6 @@ export const auth = defineStore('auth', {
                         connectTimeout: 4000,
                     },
                 )
-
-                mqttHook.subscribe(['tommy44458/vue3/starter/console/register_task'], 1)
 
                 mqttHook.registerEvent(
                     'tommy44458/vue3/starter/console/register_task',
@@ -104,6 +110,15 @@ export const auth = defineStore('auth', {
             }
             // client-2
             if (!mqttHook.isConnected('mqtt-client-2')) {
+                mqttHook.registerEvent(
+                    'on-connect',
+                    () => {
+                        mqttHook.subscribe(['tommy44458/vue3/starter/console/register_task'], 1, null, null, 'mqtt-client-2')
+                    },
+                    'login',
+                    'mqtt-client-2',
+                )
+
                 mqttHook.connect(
                     `${mqttProtocol}://${mqttHost}:${mqttPort}`,
                     {
@@ -115,8 +130,6 @@ export const auth = defineStore('auth', {
                     },
                     'mqtt-client-2',
                 )
-
-                mqttHook.subscribe(['tommy44458/vue3/starter/console/register_task'], 1, null, null, 'mqtt-client-2')
 
                 mqttHook.registerEvent(
                     'tommy44458/vue3/starter/console/register_task',
