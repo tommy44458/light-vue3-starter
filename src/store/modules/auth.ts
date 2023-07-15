@@ -54,7 +54,6 @@ export const auth = defineStore('auth', {
             if (payload.account === this.fakeAccount.account) {
                 if (payload.password === this.fakeAccount.password) {
                     storage.setStorageSync('currentAccount', payload.account)
-                    this.mqttConnect()
                 }
             }
         },
