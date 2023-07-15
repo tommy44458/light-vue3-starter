@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/icon/SvgIcon.vue')['default']
     TaskComponent: typeof import('./src/components/task/TaskComponent.vue')['default']
+    TaskDataChart: typeof import('./src/components/task/TaskDataChart.vue')['default']
   }
 }
 
