@@ -26,8 +26,7 @@
 							class="text-color-secondary text-12px leading-20px"
 							w:mb="12px"
 						>
-							We give you a wonderful experience of wireless
-							experiment.
+							We give you a wonderful experience experiment.
 						</p>
 						<ElForm :model="authStore.userLogin">
 							<div w:mb="12px">
