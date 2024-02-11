@@ -2,7 +2,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/-Vue3-34495e?logo=vue.j" />
-    <img src="https://img.shields.io/badge/-Vite2.7-646cff?logo=vite&logoColor=white" />
+    <img src="https://img.shields.io/badge/-Vite4-646cff?logo=vite&logoColor=white" />
     <img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white" />
     <img src="https://img.shields.io/badge/-Pinia-yellow?logo=picpay&logoColor=white" />
 	<img src="https://img.shields.io/badge/-Tailwindcss-blue?logo=TailwindCSS&logoColor=white">
