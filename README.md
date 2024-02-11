@@ -9,7 +9,9 @@
     <img src="https://img.shields.io/badge/-ESLint-4b32c3?logo=eslint&logoColor=white" />
     <img src="https://img.shields.io/badge/-Prettier-ef9421?logo=Prettier&logoColor=white">
 	<img src="https://img.shields.io/badge/-ElementPlus-blue?logo=ElementPlus&logoColor=white">
+	<img src="https://app.codacy.com/project/badge/Grade/e18438ee8e404b43aad89f506934f048"/>
 <p>
+
 
 This template should help get you started developing with Vue3, Pinia, TailwindCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs. Also, this template also supports MQTTv5 so that it can easily become a control system for IoT devices.
 
