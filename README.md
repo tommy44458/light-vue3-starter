@@ -1,22 +1,23 @@
 # A LIGHT Vue3 Starter Admin Template.
 
-<p align="center">  
+<p align="center">
     <img src="https://img.shields.io/badge/-Vue3-34495e?logo=vue.j" />
     <img src="https://img.shields.io/badge/-Vite2.7-646cff?logo=vite&logoColor=white" />
     <img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white" />
     <img src="https://img.shields.io/badge/-Pinia-yellow?logo=picpay&logoColor=white" />
-	<img src="https://img.shields.io/badge/-Windicss-blue?logo=Windicss&logoColor=white">
+	<img src="https://img.shields.io/badge/-Tailwindcss-blue?logo=TailwindCSS&logoColor=white">
     <img src="https://img.shields.io/badge/-ESLint-4b32c3?logo=eslint&logoColor=white" />
     <img src="https://img.shields.io/badge/-Prettier-ef9421?logo=Prettier&logoColor=white">
 	<img src="https://img.shields.io/badge/-ElementPlus-blue?logo=ElementPlus&logoColor=white">
-<p> 
+<p>
 
-This template should help get you started developing with Vue3, Pinia, WindiCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs. Also, this template also supports MQTT so that it can easily become a control system for IoT devices.
+This template should help get you started developing with Vue3, Pinia, TailwindCSS, ElementPlus, Mqtt and TypeScript in Vite. The template uses Vue3 `<script setup>` SFCs. Also, this template also supports MQTTv5 so that it can easily become a control system for IoT devices.
 
-![image](https://github.com/tommy44458/vue3-vite-pinia-windi-mqtt-starter/blob/main/src/assets/demo_page1.png)
+![image](https://github.com/tommy44458/light-vue3-starter/blob/main/src/assets/demo_page1.png)
 
 ### Check out the [Online DEMO](https://light-vue3-starter-tommy44458.vercel.app/).
 
+![image](https://github.com/tommy44458/light-vue3-starter/blob/main/src/assets/demo_login.png)
 ```sh
 // login info
 Account: tommy
@@ -28,7 +29,7 @@ Password: tommy
 -   [Vue 3](https://vuejs.org/guide/introduction.html)
 -   [Vite](https://vitejs.dev/guide/)
 -   [Pinia](https://pinia.vuejs.org/)
--   [WindiCSS](https://windicss.org/)
+-   [TailwindCSS](https://tailwindcss.com/)
 -   [Vue Router](https://github.com/vuejs/router)
 -   [ElementPlus UI](https://element-plus.org/en-US/)
 -   [Stylus](https://github.com/stylus/stylus)
@@ -53,23 +54,19 @@ add `.eslintignore`  and  `.stylelintignore`  to `src/`  directory respectively 
 
 ## Support MQTT client
 	
-#### src/main.ts
+#### *.ts
 ``` ts
-import { createApp } from 'vue'
-import App from './App.vue'
-
-const app = createApp(App)
-
 // protocol = 'wss', 'ws', 'mqtt', ...
 // host = ip or domain
 // port = 8083, 1883, ...
-import mqttVueHook from 'mqtt-vue-hook'
-// app.use(mqttVueHook, options)
-app.use(mqttVueHook, `${protocol}://${host}:${port}`, {
-  clean: false,
-  keepalive: 60,
-  clientId: `mqtt_client_${Math.random().toString(16).substring(2, 10)}`,
-  connectTimeout: 4000,
+import { useMQTT } from 'mqtt-vue-hook'
+const mqttHook = useMQTT()
+
+mqttHook.connect(`${protocol}://${host}:${port}`, {
+    clean: false,
+    keepalive: 60,
+    clientId: `mqtt_client_${Math.random().toString(16).substring(2, 10)}`,
+    connectTimeout: 4000,
 })
 ```
 	

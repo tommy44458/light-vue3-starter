@@ -1,13 +1,13 @@
 {
   "name": "vue3-vite-pinia-mqtt-eslint-stylelint-starter",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tommy44458/vue3-vite-pinia-mqtt-eslint-stylelint-starter.git"
+    "url": "https://github.com/tommy44458/light-vue3-starter"
   },
   "bugs": {
-    "url": "https://github.com/tommy44458/vue3-vite-pinia-mqtt-eslint-stylelint-starter/-/issues"
+    "url": "https://github.com/tommy44458/light-vue3-starter/-/issues"
   },
   "scripts": {
     "dev": "vite",
