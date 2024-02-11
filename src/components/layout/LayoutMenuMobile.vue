@@ -21,7 +21,7 @@
 				"
 			>
 				<ElIcon>
-					<SvgIcon :name="item.meta.icon" />
+					<SvgIcon :name="(item.meta.icon as string)" />
 				</ElIcon>
 				<template #title v-if="!layoutStore.sideMenu.isCollapse">
 					{{ item.meta.title }}

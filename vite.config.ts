@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-import WindiCSS from 'vite-plugin-windicss'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -27,7 +26,6 @@ export default ({ mode, command }: { mode: string, command: string }) => {
         },
         plugins: [
             vue(),
-            WindiCSS(),
             AutoImport({
                 // targets to transform
                 include: [

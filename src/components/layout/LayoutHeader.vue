@@ -2,26 +2,22 @@
 	<ElRow :gutter="20">
 		<ElCol :span="12">
 			<div class="flex-center justify-start">
-				<ElSpace wrap :size="16" class="justify-start">
-					<div
-						@click="layoutStore.clickSideMenuIcon()"
-						class="cursor-pointer"
-					>
-						<SvgIcon name="side_menu" class="side_menu" />
-					</div>
-					<div @click="router.push('/')" class="cursor-pointer">
-						<h1>CONSOLE</h1>
-					</div>
-				</ElSpace>
+                <div
+                    @click="layoutStore.clickSideMenuIcon()"
+                    class="cursor-pointer mr-2"
+                >
+                    <SvgIcon name="side_menu" class="h-4 w-4 flex-center justify-start" />
+                </div>
+                <div @click="router.push('/')" class="cursor-pointer">
+                    <p class="my-0">CONSOLE</p>
+                </div>
 			</div>
 		</ElCol>
 		<ElCol :span="12">
 			<div class="flex-center justify-end">
-				<ElSpace wrap :size="0">
-					<SvgIcon name="bell" class="bell" w:m="r-16px" />
-					<SvgIcon name="user" class="user-solid" w:m="r-16px" />
-					<ElButton size="small" @click="logout()"> Logout </ElButton>
-				</ElSpace>
+                <SvgIcon name="bell" class="h-4 w-4 mr-2" />
+                <SvgIcon name="user" class="h-4 w-4 mr-2" />
+                <ElButton size="small" @click="logout()"> Logout </ElButton>
 			</div>
 		</ElCol>
 	</ElRow>
@@ -45,22 +41,4 @@ const logout = () => {
 .el-row
     height 100%
     align-items center
-
-.side_menu
-    width 16px
-    height 16px
-
-.logo
-    width 51.03px
-    height 24px
-
-.bell
-    width 20px
-    height 20px
-    color #606666
-
-.user-solid
-    width 20px
-    height 20px
-    color #606666
 </style>

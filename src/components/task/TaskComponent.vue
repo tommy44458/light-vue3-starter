@@ -1,10 +1,10 @@
 <template>
 	<ElRow
         v-if="currentTask"
-        class="mb-8px flex flex-center border-dark-30 border-1 pa-16px h-50px"
+        class="mb-[8px] flex flex-center pa-[16px] h-[50px]"
         :key="taskStore.taskListKey"
     >
-        <ElCol :span="3" class="!py-4px text-center">
+        <ElCol :span="3" class="!py-[4px] text-center">
             {{ currentTask.date }}
         </ElCol>
         <ElCol :span="3">
@@ -13,7 +13,7 @@
         <ElCol :span="8">
             {{ currentTask.desc }}
         </ElCol>
-        <ElCol :span="6" class="pr-16px">
+        <ElCol :span="5">
             <TaskDataChart
                 style="height: 30px;"
                 :name="currentTask.name"
@@ -21,6 +21,7 @@
                 :ret="'chartRef'"
             />
         </ElCol>
+        <ElCol :span="1"></ElCol>
         <ElCol :span="2">
             <ElCheckbox
                 v-model="checked"

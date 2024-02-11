@@ -1,7 +1,7 @@
 <template>
     <div
         ref="chartRef"
-        class="w-full h-48px border-1"
+        class="w-full border-solid border-[0.5px] border-[#E3ECED]"
     />
 </template>
 

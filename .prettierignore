@@ -2,3 +2,4 @@ build/
 node_modules/
 package-lock.json
 yarn.lock
+tailwind.config.js

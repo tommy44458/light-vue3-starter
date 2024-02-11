@@ -6,45 +6,42 @@
 		<ElContainer class="bg-fill-color">
 			<ElContainer>
 				<div
-					class="h-full flex flex-col justify-center items-center pb-110px"
+					class="flex h-full flex-col items-center justify-center pb-[110px]"
 				>
 					<ElImage
-						class="h-100px mb-36px"
+						class="mb-[36px] h-[50px] w-[50px]"
 						:src="logoUrl"
 						fill="scale-down"
 					/>
 					<ElCard
-						class="w-40vw max-w-480px px-8px"
+						class="w-[40vw] max-w-[480px] px-2"
 						:class="{
 							'!w-full': layoutStore.isMobile,
 						}"
 					>
-						<p class="text-20px leading-28px font-700" w:mb="12px">
-							Log in
-						</p>
-						<p
-							class="text-color-secondary text-12px leading-20px"
-							w:mb="12px"
-						>
-							We give you a wonderful experience experiment.
+						<p class="mb-3 text-xl font-bold">Log in</p>
+						<p class="text-color-secondary mb-3 text-xs">
+							We give you a wonderful experience.
 						</p>
 						<ElForm :model="authStore.userLogin">
-							<div w:mb="12px">
-								<p class="text-14px font-500" w:mb="4px">
+							<div class="mb-3">
+								<span class="mb-1 text-sm font-medium">
 									Account
-								</p>
+								</span>
 								<ElFormItem>
 									<ElInput
+										data-qe-id="account-input"
 										v-model="authStore.userLogin.account"
 									/>
 								</ElFormItem>
 							</div>
-							<div w:mb="16px">
-								<p class="text-14px font-500" w:mb="4px">
+							<div class="mb-4">
+								<span class="mb-1 text-sm font-medium">
 									Password
-								</p>
+								</span>
 								<ElFormItem prop="pass">
 									<ElInput
+										data-qe-id="password-input"
 										v-model="authStore.userLogin.password"
 										type="password"
 										autocomplete="off"
@@ -52,16 +49,13 @@
 									/>
 								</ElFormItem>
 							</div>
-							<ElRow w:mb="16px">
+							<ElRow class="flex-center mb-4">
 								<ElCol :span="12">
 									<div class="flex-center justify-start">
 										<ElCheckbox
 											v-model="authStore.isRememberMe"
 											size="small"
 											label="Remember me"
-											@change="
-												authStore.rememberMeOrNot()
-											"
 										/>
 									</div>
 								</ElCol>
@@ -80,6 +74,7 @@
 							</ElRow>
 							<ElFormItem>
 								<ElButton
+									data-qe-id="login-button"
 									type="primary"
 									class="w-full"
 									@click="submitForm()"
@@ -90,7 +85,7 @@
 						</ElForm>
 					</ElCard>
 				</div>
-				<ElFooter class="!h-32px">
+				<ElFooter class="!h-8">
 					<LayoutFooter />
 				</ElFooter>
 			</ElContainer>

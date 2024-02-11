@@ -17,7 +17,7 @@
 				</ElAside>
 				<ElContainer v-loading="layoutStore.isRouteChanging">
 					<ElMain
-						class="!-p-0 !bg-white !p-16px"
+						class="!-p-[0] !bg-white !p-[16px]"
 						:style="useViewHeight(80)"
 					>
 						<RouterView />
